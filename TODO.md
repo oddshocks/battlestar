@@ -7,6 +7,7 @@ Priorities
 	*** -- High
 	!!! -- Urgent!
 
+'''
 !!! -- Finalize game rules (remember, we need to be done in a few weeks)
 *** -- Lay out classes (I will do this once we finish the rules)
 *** -- Integrate chat client/server code
@@ -17,3 +18,4 @@ Priorities
   * -- Get royalty-free background music
  ** -- Get board graphics
   * -- Get ship graphics (if we include battle interface)
+'''

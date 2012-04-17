@@ -1,7 +1,7 @@
 BATTLESTAR
 ==========
 A multiplayer game based on Battlestar lore.
-Provides client and server, both written in Java.
+
 Authors: David Gay, Scott Gunther, Yigit Katkici, Nathan Osborn
 
 In this tactical strategy, two players choose Human or Cylon and battle it out.
