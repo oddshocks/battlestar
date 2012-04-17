@@ -1,30 +1,19 @@
 Battlestar TODO
 ===============
-
-Right now, we're busy working on:
-	- Writing a chat server and client (required for course)
-	- Designing the framework of the game
-Ergo, we haven't started coding yet. This file will contain our ideas and such.
-
 Priorities
 ----------
-	
 	  * -- Low
- 	 ** -- Moderate
+	 ** -- Moderate
 	*** -- High
 	!!! -- Urgent!
 
-List
-----
-
-	!!! -- Lay out design framework (define classes, game rules, etc)
-	*** -- Integrate chat client/server code
-	*** -- Decide on interface appearance and functionality
-
-Ideas
------
-
-       - Circular board
-       - Movement based off of trivia/challenges each turn
-       - Chat server between players
-       - Teams?
+!!! -- Finalize game rules (remember, we need to be done in a few weeks)
+*** -- Lay out classes (I will do this once we finish the rules)
+*** -- Integrate chat client/server code
+*** -- Decide on interface appearance and functionality
+ ** -- Develop board interface
+ ** -- Develop battle interface (if we decide to have one)
+  * -- Get royalty-free sounds
+  * -- Get royalty-free background music
+ ** -- Get board graphics
+  * -- Get ship graphics (if we include battle interface)

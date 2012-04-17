@@ -1,17 +1,19 @@
 BATTLESTAR
 ==========
 A multiplayer game based on Battlestar lore.
-Provides client and server, both written in java.
-Authors: David Gay and three other people whose names I will add later
+Provides client and server, both written in Java.
+Authors: David Gay, Scott Gunther, Yigit Katkici, Nathan Osborn
 
-I can't really add much here at this point, because we've just started the
-project and I don't know anything about Battlestar. Once we get a few more
-ideas solidified from our project lead (the Battlestar fan), I'll be able
-to add a few more details here.
+In this tactical strategy, two players choose Human or Cylon and battle it out.
+The Cylons attempt to destroy the 12 colonies, and the Humans do their
+best to reach Earth. Of course, the Humans also need to protect the 12
+colonies and the Cylons must stop the Humans...
 
-For this project, there isn't a need for everyone to learn Git. Therefore, I
-will be maintaining the repo with whatever any of the four of us write.
+For a basic Java course, there isn't a need for everyone to learn Git.
+Therefore, I will be maintaining the repo with our most current work.
+Of course, if anyone else gets a handle on Git and learns to properly push
+their own work (to a seperate branch, please), even better. :)
 
 License
 -------
-We haven't discussed this yet. My vote is open source. ;)
+Open source (based on our use of GitHub). Probably GNU GPL, but I have to check with everyone first.
