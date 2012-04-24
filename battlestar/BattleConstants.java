@@ -7,5 +7,11 @@
 
 public interface BattleConstants
 {
+    /// VALUES /// 
+
     final int GAME_PORT = 16789;
+
+    /// COMMANDS ///
+
+    final String COMMAND_QUIT = "/quit"
 }
