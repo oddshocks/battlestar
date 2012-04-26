@@ -1,5 +1,6 @@
 /**
  * Battlestar Client
+ * For RIT's 4002-219 course
  * Author: David Gay
  * Spring 2012
  */
@@ -13,8 +14,17 @@ import javax.swing.*;
 
 public class BattleClient extends JFrame implements BattleConstants
 {
+    ViewPanel panelView;
+    StatPanel panelStat;
+    ControlPanel panelControl;
+    ChatPanel panelChat;
+
+    String handle; // client identifier
 
     final StatusBar statusBar;
+    final JTextField tfInput;
+
+    boolean reading; // are we reading from the server?
 
     /**
      * Constructor
@@ -24,8 +34,11 @@ public class BattleClient extends JFrame implements BattleConstants
     {
         this.setTitle("Battlestar");
         this.setLocation(200, 200);
-        this.setSize(640, 480);
+        this.setSize(1024, 800);
         this.setLayout(new BorderLayout());
+
+        // Set handle
+        handle = "Player";
 
         // Menu bar
         JMenuBar menuBar = new JMenuBar();
@@ -66,29 +79,41 @@ public class BattleClient extends JFrame implements BattleConstants
         
         // Content area
         JPanel panelContent = new JPanel();
-        panelContent.setLayout(new GridLayout(2, 1));
+        panelContent.setLayout(new GridLayout(1, 2));
         
-            // View panel
-            JPanel panelView = new JPanel();
-            panelContent.add(panelView);
-            
-            // Control panel
-            JPanel panelControl = new JPanel();
-            panelContent.add(panelControl);
+            // Game area
+            JPanel panelGame = new JPanel();
+            panelGame.setLayout(new GridLayout(2, 2));
 
-        this.add(panelContent, BorderLayout.CENTER);
+                // View panel
+                panelView = new ViewPanel();
+                panelGame.add(panelView);
+            
+                // Stats panel
+                panelStat = new StatPanel();
+                panelGame.add(panelStat);
+            
+                // Control panel
+                panelControl = new ControlPanel();
+                panelGame.add(panelControl);
+
+                // Chat panel
+                panelChat = new ChatPanel();
+                panelGame.add(panelChat);
+
+        this.add(panelGame, BorderLayout.CENTER);
 
         // Chat input and status bar
         JPanel panelFooter = new JPanel();
         panelFooter.setLayout(new GridLayout(2, 1));
-        JTextField tfChatInput = new JTextField();
-        panelFooter.add(tfChatInput);
+        tfInput = new JTextField();
+        panelFooter.add(tfInput);
         statusBar = new StatusBar();
         panelFooter.add(statusBar);
         this.add(panelFooter, BorderLayout.SOUTH);
 
         // Finalize the window
-        tfChatInput.requestFocusInWindow();
+        tfInput.requestFocusInWindow();
         statusBar.setMessage("Program started!");
         this.setVisible(true);
        
@@ -97,7 +122,45 @@ public class BattleClient extends JFrame implements BattleConstants
         try
         {
             // Connect with server
-            final Socket s = new Socket(ip, PORT);
+            final Socket s = new Socket(ip, GAME_PORT);
+            
+            // Open server I/O
+            final BufferedReader br = new BufferedReader(
+                new InputStreamReader(s.getInputStream()));
+            final PrintWriter pw = new PrintWriter(
+                new OutputStreamWriter(s.getOutputStream()));
+
+            // Create a thread to continuously read from server
+            final Thread serverRead = new Thread()
+            {
+                public void run()
+                {
+                    while (reading)
+                    {
+                        try
+                        {
+                            String input = br.readLine();
+                            if (input.equals("STOP"))
+                            {
+                                statusBar.setMessage("Bye!");
+                                break; // we're done here
+                            }
+                            panelChat.print(input + "\n");
+                        }
+                        catch (NullPointerException npex)
+                        {
+                            panelChat.print("Server down!");
+                            break;
+                        }
+                        catch (IOException ioex)
+                        {
+                            panelChat.print("I/O error");
+                            ioex.printStackTrace();
+                        }
+                    }
+                }
+            };
+            serverRead.start();
 
             // Close connections if the client is closed
             this.addWindowListener(new WindowAdapter()
@@ -107,10 +170,16 @@ public class BattleClient extends JFrame implements BattleConstants
                         try
                         {
                             // Tell the server that we're quitting
+                            pw.println("/quit");
+                            pw.flush();
 
                             // Stop reading
-                        
+                            reading = false;
+
                             // Close connections
+                            br.close();
+                            pw.close();
+                            s.close();
                         }
                         catch (IOException ioex)
                         {
@@ -121,6 +190,36 @@ public class BattleClient extends JFrame implements BattleConstants
                         {
                             // Actually quit
                             System.exit(0);
+                        }
+                    }
+                });
+
+            // Send message with ENTER button
+            tfInput.addKeyListener(new KeyAdapter()
+                {
+                    public void keyPressed(KeyEvent ke)
+                    {
+                        if (ke.getKeyCode() == KeyEvent.VK_ENTER)
+                        {
+                            String msg = tfInput.getText();
+
+                            if (msg.equals(""))
+                            {
+                                // do nothing
+                            }
+                            else if (msg.equals("/quit"))
+                            {
+                                quit();
+                            }
+                            else
+                            {
+                                // Let the server know we're sending
+                                // a chat message, then send it.
+                                pw.println("CHAT");
+                                pw.println("<" + handle + "> " + msg);
+                                pw.flush();
+                                tfInput.setText("");
+                            }
                         }
                     }
                 });

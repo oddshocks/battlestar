@@ -1,5 +1,6 @@
 /**
- * Server for Battlestar
+ * Battlestar Server
+ * For RIT's 4002-219 course
  * Author: David Gay
  * Spring 2012
  */

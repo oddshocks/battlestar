@@ -11,7 +11,11 @@ public interface BattleConstants
 
     final int GAME_PORT = 16789;
 
+    /// SETTINGS ///
+
+    final int VIEW_SIZE = 12;
+
     /// COMMANDS ///
 
-    final String COMMAND_QUIT = "/quit"
+    final String COMMAND_QUIT = "/quit";
 }
