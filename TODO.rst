@@ -6,24 +6,27 @@ sure how to handle!
 
 Urgent
 ------
-* Finalize game rules (remember, we need to be done in a few weeks)
-* Add to design document
-* Figure out a plan with the MPP file
+* [X] Finalize game rules (remember, we need to be done in a few weeks)
+* [X] Add to design document
+* [ ] Make sure we know what we're doing with the MPP file
 
 Important
 ---------
-* Lay out classes (I will do this once we finish the rules)
-* Integrate chat client/server code
-* Decide on interface appearance and functionality
+* [ ] Finalize communication protocol (/slash commands from client, CAPS commands from server)
+* [X] Lay out classes (I will do this once we finish the rules)
+* [ ] Integrate chat client/server code
+* [X] Decide on interface appearance and functionality
+* [ ] Document classes and methods in design doc
 
 Needed
 ------
-* Develop board interface
-* Develop battle interface (if we decide to have one)
-* Get board graphics
+* [X] Develop board interface
+* [ ] Develop battle interface (if we decide to have one)
+* [ ] Get ship/board graphics
+* [ ] Decide on stats used in stats pane
 
 Wanted
 ------
-* Get royalty-free sounds
-* Get royalty-free background music
-* Get ship graphics (if we include battle interface)
+* [ ] Get royalty-free sounds
+* [ ] Get royalty-free background music
+* [ ] Get more graphics!
