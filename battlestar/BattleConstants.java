@@ -15,7 +15,11 @@ public interface BattleConstants
 
     final int VIEW_SIZE = 12;
 
-    /// COMMANDS ///
+    /// CLIENT COMMANDS ///
 
-    final String COMMAND_QUIT = "/quit";
+    final String C_QUIT = "/quit";
+
+    /// SERVER COMMANDS ///
+    
+    final String S_MSG = "MSG";
 }
