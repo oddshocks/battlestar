@@ -170,7 +170,7 @@ public class BattleClient extends JFrame implements BattleConstants
                         try
                         {
                             // Tell the server that we're quitting
-                            pw.println("/quit");
+                            pw.println(C_QUIT);
                             pw.flush();
 
                             // Stop reading
@@ -199,27 +199,36 @@ public class BattleClient extends JFrame implements BattleConstants
                 {
                     public void keyPressed(KeyEvent ke)
                     {
-                        if (ke.getKeyCode() == KeyEvent.VK_ENTER)
+                        if (ke.getKeyCode() == KeyEvent.VK_ENTER
+                            && !tfInput.getText().equals(""))
                         {
-                            String msg = tfInput.getText();
+                            String input = tfInput.getText();
+                            String cmd; // the command
+                            String arg; // the argument string
 
-                            if (msg.equals(""))
+                            if (input.charAt(0) != '/') // Chat message entered
                             {
-                                // do nothing
+                                cmd = C_CHAT;
+                                arg = input;
                             }
-                            else if (msg.equals("/quit"))
+                            else // Command entered
+                            {
+                                String[] msg = input.split(" ", 1);
+                                cmd = msg[0];
+                                arg = msg[1];
+                            }
+                            if (cmd.equals("/quit"))
                             {
                                 quit();
                             }
-                            else
+                            if (cmd.equals("/chat"))
                             {
-                                // Let the server know we're sending
-                                // a chat message, then send it.
-                                pw.println("CHAT");
-                                pw.println("<" + handle + "> " + msg);
-                                pw.flush();
-                                tfInput.setText("");
+                                command(pw, C_CHAT, "<" + handle + "> "
+                                    + arg);
                             }
+                            
+                            // Clear the input text field
+                            tfInput.setText("");
                         }
                     }
                 });
@@ -236,6 +245,20 @@ public class BattleClient extends JFrame implements BattleConstants
 
         /// END SERVER CONNECTION CODE ///
     }
+
+    /**
+     * Send a command to the server
+     * @param pw the PrintWriter to send the command to
+     * @param cmd the command
+     * @param arg the argument
+     */
+    public void command(PrintWriter pw, String cmd, String arg)
+    {
+        pw.println(cmd);
+        pw.println(arg);
+        pw.flush();
+    }
+
     /**
      * Program entry point
      * @param args the program arguments (none taken)

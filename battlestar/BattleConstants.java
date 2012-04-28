@@ -18,6 +18,7 @@ public interface BattleConstants
     /// CLIENT COMMANDS ///
 
     final String C_QUIT = "/quit";
+    final String C_CHAT = "/chat";
 
     /// SERVER COMMANDS ///
     
