@@ -110,7 +110,9 @@ public class BattleServer implements BattleConstants
             
                 command(S_MSG, "Connected to server.", id);
                 command(S_MSG, "Client " + id + " has connected!", 0);
-                
+                printMessage("Client " + id + " has connected.");
+                printMessage("Connected clients : " + clients.size());
+
                 while (reading) // Continously accept input from the client
                 {
                     clientMsg = br.readLine();
@@ -119,11 +121,13 @@ public class BattleServer implements BattleConstants
                     {
                         // Send quit notification'
                         command(S_MSG, "Client " + id + " has quit.", 0);
+                        printMessage("Client " + id + " is quitting.");
                         // Perhaps send a message to end the thread,
                         // if that ends up making sense?
                         reading = false;
                         // Get rid of this client
                         clients.remove(this);
+                        printMessage("Connected clients : " + clients.size());
                     }
                     else if (clientMsg.equals(C_CHAT))
                     {

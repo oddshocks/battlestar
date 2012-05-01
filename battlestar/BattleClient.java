@@ -132,6 +132,8 @@ public class BattleClient extends JFrame implements BattleConstants
             final PrintWriter pw = new PrintWriter(
                 new OutputStreamWriter(s.getOutputStream()));
 
+            /// SERVER COMMAND HANDLING ///
+
             // Create a thread to continuously read from server
             final Thread serverRead = new Thread()
             {
@@ -144,12 +146,13 @@ public class BattleClient extends JFrame implements BattleConstants
                             String input = br.readLine();
                             if (input.equals(S_STOP))
                             {
+                                System.out.println("Got STOP command"); // DEBUG
                                 statusBar.setMessage("Bye!");
                                 break; // we're done here
                             }
                             else if (input.equals(S_MSG))
                             {
-                                System.out.println("Got MSG input"); // debug
+                                System.out.println("Got MSG command"); // DEBUG
                                 input = br.readLine();
                                 panelChat.print(input);
                             }
@@ -169,6 +172,8 @@ public class BattleClient extends JFrame implements BattleConstants
             };
             serverRead.start(); // start the server reading thread
 
+            /// END SERVER COMMAND HANDLING ///
+            
             // Close connections if the client is closed
             this.addWindowListener(new WindowAdapter()
                 {
@@ -201,7 +206,9 @@ public class BattleClient extends JFrame implements BattleConstants
                     }
                 });
 
-            // Send message with ENTER button
+            /// CLIENT COMMAND HANDLING ///
+
+            // Send command with ENTER button
             tfInput.addKeyListener(new KeyAdapter()
                 {
                     public void keyPressed(KeyEvent ke)
@@ -220,7 +227,7 @@ public class BattleClient extends JFrame implements BattleConstants
                             }
                             else // Command entered
                             {
-                                String[] msg = input.split(" ", 1);
+                                String[] msg = input.split(" ", 2);
                                 cmd = msg[0];
                                 arg = null;
                                 if (msg.length > 1)
@@ -228,11 +235,14 @@ public class BattleClient extends JFrame implements BattleConstants
                                     arg = msg[1];
                                 }
                             }
-                            if (cmd.equals(C_QUIT))
+
+                            // Handle different commands...
+
+                            if (cmd.equals(C_QUIT)) // QUIT
                             {
                                 quit();
                             }
-                            if (cmd.equals(C_CHAT))
+                            if (cmd.equals(C_CHAT)) // CHAT
                             {
                                 command(pw, C_CHAT, "<" + handle + "> "
                                     + arg);
@@ -243,6 +253,8 @@ public class BattleClient extends JFrame implements BattleConstants
                         }
                     }
                 });
+
+            /// END CLIENT COMMAND HANDLING ///
         }
         catch (UnknownHostException uhex)
         {
