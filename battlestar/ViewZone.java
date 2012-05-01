@@ -7,6 +7,7 @@
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.*;
 
 public class ViewZone extends JButton
 {
@@ -16,5 +17,11 @@ public class ViewZone extends JButton
     public ViewZone()
     {
         super();
+        this.setForeground(Color.WHITE);
+        this.setBackground(Color.BLACK);
+        Border line = new LineBorder(Color.BLUE);
+        Border margin = new EmptyBorder(5, 15, 5, 15);
+        Border compound = new CompoundBorder(line, margin);
+        this.setBorder(compound);
     }
 }
