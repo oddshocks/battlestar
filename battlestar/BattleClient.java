@@ -32,13 +32,15 @@ public class BattleClient extends JFrame implements BattleConstants
      */
     public BattleClient(String ip)
     {
+        // Default attribute values
+        reading = true;
+        handle = "Player";
+
+        // Start setting up the GUI
         this.setTitle("Battlestar");
         this.setLocation(200, 200);
         this.setSize(1024, 800);
         this.setLayout(new BorderLayout());
-
-        // Set handle
-        handle = "Player";
 
         // Menu bar
         JMenuBar menuBar = new JMenuBar();
@@ -165,7 +167,7 @@ public class BattleClient extends JFrame implements BattleConstants
                     }
                 }
             };
-            serverRead.start();
+            serverRead.start(); // start the server reading thread
 
             // Close connections if the client is closed
             this.addWindowListener(new WindowAdapter()
