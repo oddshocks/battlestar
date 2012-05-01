@@ -23,4 +23,5 @@ public interface BattleConstants
     /// SERVER COMMANDS ///
     
     final String S_MSG = "MSG";
+    final String S_STOP = "STOP";
 }

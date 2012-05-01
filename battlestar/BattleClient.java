@@ -140,18 +140,17 @@ public class BattleClient extends JFrame implements BattleConstants
                         try
                         {
                             String input = br.readLine();
-                            if (input.equals("STOP"))
+                            if (input.equals(S_STOP))
                             {
                                 statusBar.setMessage("Bye!");
                                 break; // we're done here
                             }
-                            else if (input.equals("MSG"))
+                            else if (input.equals(S_MSG))
                             {
                                 System.out.println("Got MSG input"); // debug
                                 input = br.readLine();
                                 panelChat.print(input);
                             }
-                            panelChat.print(input);
                         }
                         catch (NullPointerException npex)
                         {
@@ -221,13 +220,17 @@ public class BattleClient extends JFrame implements BattleConstants
                             {
                                 String[] msg = input.split(" ", 1);
                                 cmd = msg[0];
-                                arg = msg[1];
+                                arg = null;
+                                if (msg.length > 1)
+                                {
+                                    arg = msg[1];
+                                }
                             }
-                            if (cmd.equals("/quit"))
+                            if (cmd.equals(C_QUIT))
                             {
                                 quit();
                             }
-                            if (cmd.equals("/chat"))
+                            if (cmd.equals(C_CHAT))
                             {
                                 command(pw, C_CHAT, "<" + handle + "> "
                                     + arg);
