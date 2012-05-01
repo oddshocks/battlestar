@@ -110,6 +110,28 @@ public class BattleServer implements BattleConstants
             
                 command(S_MSG, "Connected to server.", id);
                 command(S_MSG, "Client " + id + " has connected!", 0);
+                
+                while (reading) // Continously accept input from the client
+                {
+                    clientMsg = br.readLine();
+
+                    if (clientMsg.equals(C_QUIT))
+                    {
+                        // Send quit notification'
+                        command(S_MSG, "Client " + id + " has quit.", 0);
+                        // Perhaps send a message to end the thread,
+                        // if that ends up making sense?
+                        reading = false;
+                        // Get rid of this client
+                        clients.remove(this);
+                    }
+                    else if (clientMsg.equals(C_CHAT))
+                    {
+                        String chatMsg = br.readLine();
+                        printMessage("Chat message receieved : " + chatMsg);
+                        command(S_MSG, chatMsg, 0);
+                    }
+                }
             }
             catch (IOException ioex)
             {

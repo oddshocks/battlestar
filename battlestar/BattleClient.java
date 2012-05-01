@@ -145,7 +145,13 @@ public class BattleClient extends JFrame implements BattleConstants
                                 statusBar.setMessage("Bye!");
                                 break; // we're done here
                             }
-                            panelChat.print(input + "\n");
+                            else if (input.equals("MSG"))
+                            {
+                                System.out.println("Got MSG input"); // debug
+                                input = br.readLine();
+                                panelChat.print(input);
+                            }
+                            panelChat.print(input);
                         }
                         catch (NullPointerException npex)
                         {
