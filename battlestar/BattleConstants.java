@@ -17,11 +17,12 @@ public interface BattleConstants
 
     /// CLIENT COMMANDS ///
 
-    final String C_QUIT = "/quit";
-    final String C_CHAT = "/chat";
+    final String C_QUIT = "/quit"; // quit the game
+    final String C_CHAT = "/chat"; // send a chat message
 
     /// SERVER COMMANDS ///
     
-    final String S_MSG = "MSG";
+    final String S_MSG = "MSG"; // send a message
     final String S_STOP = "STOP";
+    final String S_GO = "GO"; // start the game
 }
