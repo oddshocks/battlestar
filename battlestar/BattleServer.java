@@ -162,7 +162,9 @@ public class BattleServer implements BattleConstants
                             {
                                 printMessage("Both clients ready, game starting...");
                                 command(S_MSG, "Both players are ready.", 0);
-                                // start the game
+                                
+                                // Start the game
+                                command(S_GO, null, 0);
                             }
                         }
                     }
@@ -213,20 +215,23 @@ public class BattleServer implements BattleConstants
                 {
                     clientPW = c.getPW();
                     clientPW.println(cmd);
-                    clientPW.println(arg);
+                    if (arg != null)
+                        clientPW.println(arg);
                     clientPW.flush();
                 }
                 break;
             case 1:
                 clientPW = clients.get(0).getPW();
                 clientPW.println(cmd);
-                clientPW.println(arg);
+                if (arg != null)
+                    clientPW.println(arg);
                 clientPW.flush();
                 break;
             case 2:
                 clientPW = clients.get(1).getPW();
                 clientPW.println(cmd);
-                clientPW.println(arg);
+                if (arg != null)
+                    clientPW.println(arg);
                 clientPW.flush();
                 break;
         }

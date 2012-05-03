@@ -15,6 +15,15 @@ public interface BattleConstants
 
     final int VIEW_SIZE = 12;
 
+    /// SHIPS ///
+
+    final String H_GALACTICA = "Galactica"; // Can stealth for 1-3 turns
+    final String H_FIGHTER = "Human Fighter"; // Fire 2 ahead and behind
+    final String H_BOMBER = "Human Bomber"; // Fire all adjacent squares
+    final String C_BASESTAR = "Basestar"; // Disable 1-3 Human ships for 1 turn
+    final String C_RAIDER = "Cylon Raider"; // Fire 2 left and right
+    final String C_PULSAR = "Cylon Pulsar"; // Fire 2 all diagonals
+
     /// CLIENT COMMANDS ///
 
     final String C_QUIT = "/quit"; // quit the game

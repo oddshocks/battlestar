@@ -20,4 +20,13 @@ public class ViewObject
     {
         return icon;
     }
+
+    /**
+     * Sets the object's icon
+     * @param i the icon
+     */
+    public void setIcon(ImageIcon i)
+    {
+        icon = i;
+    }
 }

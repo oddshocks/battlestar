@@ -11,6 +11,7 @@ import javax.swing.border.*;
 
 public class ViewZone extends JButton
 {
+    private Ship ship; // ship currently in location
     /**
      * Constructor
      */
@@ -23,5 +24,16 @@ public class ViewZone extends JButton
         Border margin = new EmptyBorder(5, 15, 5, 15);
         Border compound = new CompoundBorder(line, margin);
         this.setBorder(compound);
+
+        ship = null;
+    }
+
+    /**
+     * Return the ship in the location
+     * @return the ship
+     */
+    public Ship ship()
+    {
+        return ship;
     }
 }

@@ -158,6 +158,8 @@ public class BattleClient extends JFrame implements BattleConstants
                             }
                             else if (input.equals(S_GO))
                             {
+                                System.out.println("Got GO command"); // DEBUG
+                                panelChat.print("The battle has begun!");
                                 // start the game
                             }
                         }
