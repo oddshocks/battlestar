@@ -74,6 +74,8 @@ public class BattleServer implements BattleConstants
         private boolean reading; // are we reading in?
         private int id; // client 1 or 2?
 
+        private boolean ready; // is this client ready to play?
+
         /**
          * Handler constructor
          * @param _cs client socket
@@ -90,6 +92,8 @@ public class BattleServer implements BattleConstants
                 id = 1;
             else
                 id = 2;
+
+            ready = false;
         }
 
         /**
@@ -116,8 +120,10 @@ public class BattleServer implements BattleConstants
                 while (reading) // Continously accept input from the client
                 {
                     clientMsg = br.readLine();
+                    
+                    /// COMMAND HANDLING ///
 
-                    if (clientMsg.equals(C_QUIT))
+                    if (clientMsg.equals(C_QUIT)) // Quit
                     {
                         // Send quit notification'
                         command(S_MSG, "Client " + id + " has quit.", 0);
@@ -129,12 +135,39 @@ public class BattleServer implements BattleConstants
                         clients.remove(this);
                         printMessage("Connected clients : " + clients.size());
                     }
-                    else if (clientMsg.equals(C_CHAT))
+                    else if (clientMsg.equals(C_CHAT)) // Chat
                     {
                         String chatMsg = br.readLine();
                         printMessage("Chat message receieved : " + chatMsg);
                         command(S_MSG, chatMsg, 0);
                     }
+                    else if (clientMsg.equals(C_READY)) // Ready
+                    {
+                        if (!ready)
+                        {
+                            ready = true;
+                            printMessage("Client " + id + " is ready.");
+                            command(S_MSG, "Player " + id + " is ready.", 0);
+                        }
+                        else
+                        {
+                            ready = false;
+                            printMessage("Client " + id + " is not ready.");
+                            command(S_MSG, "Player " + id + " is not ready.", 0);
+                        }
+                        if (clients.size() == 2)
+                        {
+                            if (clients.get(0).isReady()
+                                && clients.get(1).isReady())
+                            {
+                                printMessage("Both clients ready, game starting...");
+                                command(S_MSG, "Both players are ready.", 0);
+                                // start the game
+                            }
+                        }
+                    }
+
+                    /// END COMMAND HANDLING ///
                 }
             }
             catch (IOException ioex)
@@ -151,6 +184,15 @@ public class BattleServer implements BattleConstants
         public PrintWriter getPW()
         {
             return pw;
+        }
+
+        /**
+         * Is the client ready to play?
+         * @return client ready or not
+         */
+        public boolean isReady()
+        {
+            return ready;
         }
     }
 

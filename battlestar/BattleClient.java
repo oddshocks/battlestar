@@ -156,6 +156,10 @@ public class BattleClient extends JFrame implements BattleConstants
                                 input = br.readLine();
                                 panelChat.print(input);
                             }
+                            else if (input.equals(S_GO))
+                            {
+                                // start the game
+                            }
                         }
                         catch (NullPointerException npex)
                         {
@@ -238,16 +242,20 @@ public class BattleClient extends JFrame implements BattleConstants
 
                             // Handle different commands...
 
-                            if (cmd.equals(C_QUIT)) // QUIT
+                            if (cmd.equals(C_QUIT)) // Quit
                             {
                                 quit();
                             }
-                            if (cmd.equals(C_CHAT)) // CHAT
+                            else if (cmd.equals(C_CHAT)) // Chat
                             {
                                 command(pw, C_CHAT, "<" + handle + "> "
                                     + arg);
                             }
-                            
+                            else if (cmd.equals(C_READY)) // Ready
+                            {
+                                command(pw, C_READY, null);
+                            }
+
                             // Clear the input text field
                             tfInput.setText("");
                         }
@@ -278,7 +286,8 @@ public class BattleClient extends JFrame implements BattleConstants
     public void command(PrintWriter pw, String cmd, String arg)
     {
         pw.println(cmd);
-        pw.println(arg);
+        if (arg != null)
+            pw.println(arg);
         pw.flush();
     }
 

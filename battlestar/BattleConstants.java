@@ -19,6 +19,7 @@ public interface BattleConstants
 
     final String C_QUIT = "/quit"; // quit the game
     final String C_CHAT = "/chat"; // send a chat message
+    final String C_READY = "/ready"; // ready to start
 
     /// SERVER COMMANDS ///
     
