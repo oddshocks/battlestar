@@ -18,11 +18,11 @@ public interface BattleConstants
     /// SHIPS ///
 
     final String H_GALACTICA = "Galactica"; // Can stealth for 1-3 turns
-    final String H_FIGHTER = "Human Fighter"; // Fire 2 ahead and behind
-    final String H_BOMBER = "Human Bomber"; // Fire all adjacent squares
+    final String H_VIPER = "Human Viper"; // Fire 2 ahead and behind
+    final String H_RAPTOR = "Human Raptor"; // Fire all adjacent squares
     final String C_BASESTAR = "Basestar"; // Disable 1-3 Human ships for 1 turn
     final String C_RAIDER = "Cylon Raider"; // Fire 2 left and right
-    final String C_PULSAR = "Cylon Pulsar"; // Fire 2 all diagonals
+    final String C_HEAVY_RAIDER = "Cylon Heavy Raider"; // Fire 2 all diagonals
 
     /// CLIENT COMMANDS ///
 
@@ -35,4 +35,5 @@ public interface BattleConstants
     final String S_MSG = "MSG"; // send a message
     final String S_STOP = "STOP";
     final String S_GO = "GO"; // start the game
+    final String S_SHIP = "SHIP"; // send ship info
 }

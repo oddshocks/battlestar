@@ -20,8 +20,8 @@ public class ChatPanel extends JPanel implements BattleConstants
     public ChatPanel()
     {
         super();
-        this.setLayout(new GridLayout(1, 1));
-        ta = new JTextArea();
+        this.setLayout(new BorderLayout());
+        ta = new JTextArea(20, 35);
         ta.setEditable(false);
         sp = new JScrollPane(ta);
         this.add(sp);

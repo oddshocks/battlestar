@@ -10,7 +10,8 @@ public class Ship extends ViewObject
     private String name; // name of ship (randomly generate later)
     private String type; // type of ship (a constant)
     private int hits; // number of hits the ship can take
-
+    private int position; // the position of the ship
+    
     /**
      * Ship constructor
      */
@@ -19,6 +20,21 @@ public class Ship extends ViewObject
         name = "Shippy";
         type = null;
         hits = 1;
+    }
+
+    /**
+     * Ship constructor (parameterized)
+     * @param _name the ship's name
+     * @param _type the type of the ship (a constant)
+     * @param _hits the number of hits the ship can take
+     * @param _position the position of the ship
+     */
+    public Ship(String _name, String _type, int _hits, int _position)
+    {
+        name = _name;
+        type = _type;
+        hits = _hits;
+        position = _position;
     }
 
     /**
@@ -82,5 +98,32 @@ public class Ship extends ViewObject
     public int hits()
     {
         return hits;
+    }
+
+    /**
+     * Sets the position of the ship
+     * @param _position the position
+     */
+    public void setPosition(int _position)
+    {
+        position = _position;
+    }
+
+    /**
+     * Get the ship's position
+     * @return the position of the ship
+     */
+    public int position()
+    {
+        return position;
+    }
+
+    /**
+     * Returns the Ship object as a string
+     * @return ship information in String format
+     */
+    public String toString()
+    {
+        return String.format("%s,%s,%d,%d", name, type, hits, position);
     }
 }

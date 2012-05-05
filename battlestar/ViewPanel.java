@@ -29,4 +29,14 @@ public class ViewPanel extends JPanel implements BattleConstants
             this.add(zones.get(i));
         }
     }
+
+    /**
+     * Set ship in ViewZone
+     */
+    public void setShip(int position, Ship ship)
+    {
+        zones.get(position).setShip(ship);
+        // I didn't set the ImageIcon here because we'll do that in the ship
+        // classes. -- David
+    }
 }

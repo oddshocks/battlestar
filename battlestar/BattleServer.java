@@ -11,7 +11,10 @@ import java.util.*;
 
 public class BattleServer implements BattleConstants
 {
-    Vector<Handler> clients; // vector for client threads
+    private Vector<Handler> clients; // vector for client threads
+
+    private Vector<Ship> cylonShips; // Cylon ships
+    private Vector<Ship> humanShips; // Human ships
 
     /**
      * BattleServer constructor
@@ -22,6 +25,9 @@ public class BattleServer implements BattleConstants
         
         ServerSocket ss = null;
         clients = new Vector<Handler>();
+
+        cylonShips = new Vector<Ship>();
+        humanShips = new Vector<Ship>();
 
         try
         {
@@ -164,7 +170,7 @@ public class BattleServer implements BattleConstants
                                 command(S_MSG, "Both players are ready.", 0);
                                 
                                 // Start the game
-                                command(S_GO, null, 0);
+                                startGame();
                             }
                         }
                     }
@@ -195,6 +201,40 @@ public class BattleServer implements BattleConstants
         public boolean isReady()
         {
             return ready;
+        }
+
+        /**
+         * Start the game by placing ships and such
+         */
+        public void startGame()
+        {
+            // Broadcast GO command
+            command(S_GO, null, 0);
+
+            // Create Raiders and Vipers
+            for (int i = 0; i < 8; i++)
+            {
+                cylonShips.add(new Ship("Raider " + i, C_RAIDER, 1, 14 + i));
+                humanShips.add(new Ship("Viper "+ i, H_VIPER, 1, 122 + i));
+            }
+
+            // Create Heavy Raiders and Raptors
+            for (int i = 0; i < 4; i++)
+            {
+                cylonShips.add(new Ship("Heavy Raider " + i, C_HEAVY_RAIDER,
+                    3, 28 + i));
+                humanShips.add(new Ship("Raptor " + i, H_RAPTOR, 3, 122 + i));
+            }
+
+            // Create "motherships"
+            cylonShips.add(new Ship("Basestar", C_BASESTAR, 5, 5));
+            humanShips.add(new Ship("Galactica", H_GALACTICA, 5, 137));
+
+            // Send the ships to the clients in string form
+            for (Ship s : humanShips)
+                command(S_SHIP, s.toString(), 0);
+            for (Ship s : cylonShips)
+                command(S_SHIP, s.toString(), 0);
         }
     }
 

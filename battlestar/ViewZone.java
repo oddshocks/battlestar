@@ -36,4 +36,13 @@ public class ViewZone extends JButton
     {
         return ship;
     }
+
+    /**
+     * Set the ship in the location
+     * @param ship the ship
+     */
+    public void setShip(Ship _ship)
+    {
+        ship = _ship;
+    }
 }

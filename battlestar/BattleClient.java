@@ -1,7 +1,7 @@
 /**
  * Battlestar Client
  * For RIT's 4002-219 course
- * Author: David Gay
+ * Author: David Gay and Scott Gunther
  * Spring 2012
  */
 
@@ -77,37 +77,25 @@ public class BattleClient extends JFrame implements BattleConstants
         menuBar.add(menuGame);
         menuBar.add(menuHelp);
 
-        this.add(menuBar, BorderLayout.NORTH);
+        this.setJMenuBar(menuBar);
         
-        // Content area
-        JPanel panelContent = new JPanel();
-        panelContent.setLayout(new GridLayout(1, 2));
-        
-            // Game area
-            JPanel panelGame = new JPanel();
-            panelGame.setLayout(new GridLayout(2, 2));
+        // View panel
+        panelView = new ViewPanel();
+        this.add(panelView, BorderLayout.CENTER);
 
-                // View panel
-                panelView = new ViewPanel();
-                panelGame.add(panelView);
-            
-                // Stats panel
-                panelStat = new StatPanel();
-                panelGame.add(panelStat);
-            
-                // Control panel
-                panelControl = new ControlPanel();
-                panelGame.add(panelControl);
+        // East panel (stats and chat)
+        JPanel panelEast = new JPanel(new GridLayout(2, 1));
+        panelStat = new StatPanel();
+        panelEast.add(panelStat);
+        panelChat = new ChatPanel();
+        panelEast.add(panelChat);
+        this.add(panelEast, BorderLayout.EAST);
 
-                // Chat panel
-                panelChat = new ChatPanel();
-                panelGame.add(panelChat);
-
-        this.add(panelGame, BorderLayout.CENTER);
-
-        // Chat input and status bar
+        // Footer panel (control, input field, status bar)
         JPanel panelFooter = new JPanel();
-        panelFooter.setLayout(new GridLayout(2, 1));
+        panelFooter.setLayout(new GridLayout(3, 1));
+        panelControl = new ControlPanel();
+        panelFooter.add(panelControl);
         tfInput = new JTextField();
         panelFooter.add(tfInput);
         statusBar = new StatusBar();
@@ -161,6 +149,27 @@ public class BattleClient extends JFrame implements BattleConstants
                                 System.out.println("Got GO command"); // DEBUG
                                 panelChat.print("The battle has begun!");
                                 // start the game
+                            }
+                            else if (input.equals(S_SHIP))
+                            {
+                                System.out.println("Got SHIP command"); // DEBUG
+                                input = br.readLine();
+
+                                // 0: name, 1: type, 2: hits, 3: position
+                                
+                                String[] shipAttributes = input.split(",");
+                                Ship newShip = new Ship(shipAttributes[0],
+                                    shipAttributes[1],
+                                    Integer.parseInt(shipAttributes[2]),
+                                    Integer.parseInt(shipAttributes[3]));
+
+                                // TODO:
+                                // Instead of setting image icons here, let's
+                                // have them set in their individual classes.
+                                
+                                // Send the ship to the ViewZone
+                                panelView.setShip(Integer.parseInt(
+                                    shipAttributes[3]), newShip);
                             }
                         }
                         catch (NullPointerException npex)
