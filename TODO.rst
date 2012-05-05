@@ -2,11 +2,14 @@ Battlestar TODO
 ===============
 Team: If you're looking for something to contribute, this is the spot.
 
+X : Done
+- : Partially complete
+
 Urgent
 ------
 * [X] Finalize game rules (remember, we need to be done in a few weeks)
 * [X] Add to design document
-* [ ] Make sure we know what we're doing with the MPP file
+* [X] Make sure we know what we're doing with the MPP file
 
 Important
 ---------
@@ -20,8 +23,7 @@ Important
 Needed
 ------
 * [X] Develop board interface
-* [ ] Develop battle interface (if we decide to have one)
-* [ ] Get ship/board graphics
+* [X] Get ship/board graphics
 * [ ] Decide on stats used in stats pane
 * [ ] Extensively test all actions
 
