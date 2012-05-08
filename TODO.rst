@@ -22,6 +22,7 @@ Important
 * [ ] Add buttons to command area that append command strings to the input field
 * [ ] Make the board append command arguments to the input field (the game will be playable with the GUI or through simple text commands)
 * [ ] Add functionality to stat pane (ideas include # of different ships, hits left on main ship, hits scored, turns, game time, match ID, etc)
+* [ ] Package for release (JAR file, manifest, make file)
 
 Needed
 ------
