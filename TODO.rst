@@ -10,6 +10,7 @@ Urgent
 * [X] Finalize game rules (remember, we need to be done in a few weeks)
 * [X] Add to design document
 * [X] Make sure we know what we're doing with the MPP file
+* [ ] Write code (get the game working!)
 
 Important
 ---------
@@ -18,7 +19,9 @@ Important
 * [X] Integrate chat client/server code
 * [X] Decide on interface appearance and functionality
 * [ ] Document classes and methods in design doc
-* [ ] Get a game working
+* [ ] Add buttons to command area that append command strings to the input field
+* [ ] Make the board append command arguments to the input field (the game will be playable with the GUI or through simple text commands)
+* [ ] Add functionality to stat pane (ideas include # of different ships, hits left on main ship, hits scored, turns, game time, match ID, etc)
 
 Needed
 ------
@@ -26,6 +29,7 @@ Needed
 * [X] Get ship/board graphics
 * [ ] Decide on stats used in stats pane
 * [ ] Extensively test all actions
+* [ ] Add additional menu functionality (get some more feedback from the program, perhaps?)
 
 Wanted
 ------
