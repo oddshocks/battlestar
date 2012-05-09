@@ -11,12 +11,14 @@ public class ShipRaptor extends Ship implements BattleConstants
     /**
      * ShipRaptop constructor
      * @param n the name of the ship
+     * @param p the position of the ship
      */
-    public ShipRaptor(String n)
+    public ShipRaptor(String n, int p)
     {
         super();
         this.setName(n);
         this.setType(H_RAPTOR);
         this.setHits(3);
+        this.setPosition(p);
     }
 }

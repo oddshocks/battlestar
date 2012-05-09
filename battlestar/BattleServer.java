@@ -214,21 +214,20 @@ public class BattleServer implements BattleConstants
             // Create Raiders and Vipers
             for (int i = 0; i < 8; i++)
             {
-                cylonShips.add(new Ship("Raider " + i, C_RAIDER, 1, 14 + i));
-                humanShips.add(new Ship("Viper "+ i, H_VIPER, 1, 122 + i));
+                cylonShips.add(new ShipRaider("Raider " + i, 14 + i));
+                humanShips.add(new ShipViper("Viper " + i, 122 + i));
             }
 
             // Create Heavy Raiders and Raptors
             for (int i = 0; i < 4; i++)
             {
-                cylonShips.add(new Ship("Heavy Raider " + i, C_HEAVY_RAIDER,
-                    3, 28 + i));
-                humanShips.add(new Ship("Raptor " + i, H_RAPTOR, 3, 122 + i));
+                cylonShips.add(new ShipHeavyRaider("Heavy Raider " + i, 28 + i));
+                humanShips.add(new ShipRaptor("Raptor " + i, 122 + i));
             }
 
             // Create "motherships"
-            cylonShips.add(new Ship("Basestar", C_BASESTAR, 5, 5));
-            humanShips.add(new Ship("Galactica", H_GALACTICA, 5, 137));
+            cylonShips.add(new ShipBasestar("Basestar", 5));
+            humanShips.add(new ShipGalactica("Galactica", 137));
 
             // Send the ships to the clients in string form
             for (Ship s : humanShips)

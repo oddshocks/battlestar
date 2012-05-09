@@ -11,12 +11,14 @@ public class ShipRaider extends Ship implements BattleConstants
     /**
      * ShipRaider constructor
      * @param n the name of the Raider
+     * @param p the position of the Raider
      */
-    public ShipRaider(String n)
+    public ShipRaider(String n, int p)
     {
         super();
         this.setName(n);
         this.setType(C_RAIDER);
         this.setHits(1);
+        this.setPosition(p);
     }
 }
