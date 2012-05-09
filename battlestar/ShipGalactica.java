@@ -10,11 +10,12 @@ public class ShipGalactica extends Ship implements BattleConstants
 {
     /**
      * ShipGalactica constructor
+     * @param n the name of the ship
      */
-    public ShipGalactica()
+    public ShipGalactica(String n)
     {
         super();
-        this.setName("Galactica");
+        this.setName(n);
         this.setType(H_GALACTICA);
         this.setHits(5);
     }

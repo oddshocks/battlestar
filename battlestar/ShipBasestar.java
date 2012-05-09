@@ -10,11 +10,12 @@ public class ShipBasestar extends Ship implements BattleConstants
 {
     /**
      * ShipBasestar constructor
+     * @param n the name of the ship
      */
-    public ShipBasestar()
+    public ShipBasestar(String n)
     {
         super();
-        this.setName("Basestar");
+        this.setName(n);
         this.setType(C_BASESTAR);
         this.setHits(5);
     }
