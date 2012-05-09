@@ -12,6 +12,7 @@ import javax.swing.border.*;
 public class ViewZone extends JButton
 {
     private Ship ship; // ship currently in location
+
     /**
      * Constructor
      */
@@ -44,5 +45,6 @@ public class ViewZone extends JButton
     public void setShip(Ship _ship)
     {
         ship = _ship;
+        this.setIcon(ship.icon());
     }
 }

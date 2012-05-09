@@ -2,6 +2,8 @@ Battlestar TODO
 ===============
 Team: If you're looking for something to contribute, this is the spot.
 
+ALSO LOOK AT THE ISSUE TRACKER!! There may be things to be done!
+
 X : Done
 - : Partially complete
 

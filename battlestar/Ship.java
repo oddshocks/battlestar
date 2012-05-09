@@ -5,12 +5,15 @@
  * Spring 2012
  */
 
+import javax.swing.ImageIcon;
+
 public class Ship extends ViewObject
 {
     private String name; // name of ship (randomly generate later)
     private String type; // type of ship (a constant)
     private int hits; // number of hits the ship can take
     private int position; // the position of the ship
+    private ImageIcon icon; // the ship's icon
     
     /**
      * Ship constructor
@@ -20,6 +23,8 @@ public class Ship extends ViewObject
         name = "Shippy";
         type = null;
         hits = 1;
+        position = -1;
+        icon = null;
     }
 
     /**
@@ -35,6 +40,15 @@ public class Ship extends ViewObject
         type = _type;
         hits = _hits;
         position = _position;
+    }
+
+    /**
+     * Returns the ship's icon
+     * @return the ship's ImageIcon
+     */
+    public ImageIcon icon()
+    {
+        return icon;
     }
 
     /**

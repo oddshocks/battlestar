@@ -8,6 +8,8 @@ import javax.swing.ImageIcon;
 
 public class ShipBasestar extends Ship implements BattleConstants
 {
+    private ImageIcon icon;
+
     /**
      * ShipBasestar constructor
      * @param n the name of the ship
@@ -20,5 +22,16 @@ public class ShipBasestar extends Ship implements BattleConstants
         this.setType(C_BASESTAR);
         this.setHits(5);
         this.setPosition(p);
+
+        icon = new ImageIcon("images/basestar.png");
+    }
+
+    /**
+     * Returns the ImageIcon used to represent the Basestar
+     * @return the ImageIcon
+     */
+    public ImageIcon icon()
+    {
+        return icon;
     }
 }
