@@ -20,5 +20,10 @@ public class ShipHeavyRaider extends Ship implements BattleConstants
         this.setType(C_HEAVY_RAIDER);
         this.setHits(3);
         this.setPosition(p);
+		  this.setMoveRange(1);
+		  this.setAttackRange(2);
+		  this.setWeaponDamage(1);
+		  		  
+		  this.setIcon(new ImageIcon("images/heavy_raider.jpg"));
     }
 }

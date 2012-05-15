@@ -29,6 +29,10 @@ public interface BattleConstants
     final String C_QUIT = "/quit"; // quit the game
     final String C_CHAT = "/chat"; // send a chat message
     final String C_READY = "/ready"; // ready to start
+	final String C_CYLON = "/cylon"; // request to be a cylon
+	final String C_HUMAN = "/human"; // request to be a human
+	final String C_MOVE = "/move"; // request to move a ship
+	final String C_ATTACK = "/attack"; //request to attack a ship
 
     /// SERVER COMMANDS ///
     
@@ -36,4 +40,11 @@ public interface BattleConstants
     final String S_STOP = "STOP";
     final String S_GO = "GO"; // start the game
     final String S_SHIP = "SHIP"; // send ship info
+	final String S_RACE = "RACE"; // send the client their race
+	final String S_TURN = "TURN"; // tell the client it is their turn
+	final String S_MOVE = "MOVE"; // move the ship
+	final String S_INVALID_MOVE = "INVALID MOVE"; // request to move 
+	final String S_INVALID_ATTACK = "INVALID ATTACK"; //request to attack denied
+	final String S_ATTACK = "ATTACK"; //attack a ship
+	final String S_DESTROY = "DESTROY"; //destroy a ship 
 }

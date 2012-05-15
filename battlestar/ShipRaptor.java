@@ -20,5 +20,10 @@ public class ShipRaptor extends Ship implements BattleConstants
         this.setType(H_RAPTOR);
         this.setHits(3);
         this.setPosition(p);
+		  this.setMoveRange(1);
+		  this.setAttackRange(2);
+		  this.setWeaponDamage(1);
+		  
+		  this.setIcon(new ImageIcon("images/raptor.png"));
     }
 }

@@ -1,0 +1,45 @@
+BattleClient
+1. Added sendAttackCommand() and sendMoveCommand() methods
+2. Added an Attack button and move button to the control panel
+3. When the client starts up there is JOptionPane to select race
+	a. Use /cylon or /human if you skip this pane
+4. Added a JOptionPane for ready
+5. Added boolean "human" to determine if client is human
+6. Added boolean "cylon" to determine if client is cylon
+7. Added boolean "myTurn" to determine if it is the client's turn
+8. Added a getPW() method to get the printwriter for use in the ViewPanel class
+9. Created a class for ServerRead - this resolved a scope and type issue with the printwriter
+10.Code to handle the new commands
+
+BattleServer
+1. Added boolean "gameStarted" to prevent game from starting over if a client enters multiple /ready commands
+	Handler
+	1. Added booleans "human", "cylon", and "myTurn" - some purpose as BattleClient 
+	2. Code to handle the new commands
+	3. Added validateAttack() method to validate attacks
+	4. Added validateMove() method to validate moves
+	5. Added changeTurn() method to change the turn
+	6. Added calcDistance to calculate the distance between positon 
+		a. It uses the distance forumala which doesn't accurately reflect number of squares away
+		   but it works.
+	7. Added setMyTurn() mutator for the myTurn boolean.
+	8. Added acessors for booleans "human" and "cylon"
+
+
+ViewPanel
+1. Created and added action listener for each ViewZone 
+2. Created actionZone and selectedZone to keep track of moving and attacking objects
+3. Added "moving" and "attacking" boolean indicate if client is attacking or moving
+
+Ship
+1. Added integers moveRange, attackRange, and weaponDamage
+1. Added accessors and mutators for moveRange, attackRange, and weaponDamage
+
+ShipX
+1. Set moveRange, attackRange, and weaponDamage
+
+BattleConstants
+1. Added the following client commands C_CYLON, C_HUMAN, C_MOVE, C_ATTACK
+2. Added the following server commands S_RACE, S_TURN, S_MOVE, S_INVALID_MOVE, S_INVALID_ATTACK,
+				       S_ATTACK, S_DESTROY
+	

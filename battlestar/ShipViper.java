@@ -20,5 +20,10 @@ public class ShipViper extends Ship implements BattleConstants
         this.setType(H_VIPER);
         this.setHits(1);
         this.setPosition(p);
+		  this.setMoveRange(2);
+		  this.setAttackRange(2);
+		  this.setWeaponDamage(1);
+		  
+		  this.setIcon(new ImageIcon("images/viper.jpg"));
     }
 }

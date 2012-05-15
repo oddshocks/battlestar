@@ -20,5 +20,10 @@ public class ShipRaider extends Ship implements BattleConstants
         this.setType(C_RAIDER);
         this.setHits(1);
         this.setPosition(p);
+		  this.setMoveRange(2);
+		  this.setAttackRange(2);
+		  this.setWeaponDamage(1);
+		  
+		  this.setIcon(new ImageIcon("images/raider.png"));
     }
 }

@@ -20,5 +20,10 @@ public class ShipGalactica extends Ship implements BattleConstants
         this.setType(H_GALACTICA);
         this.setHits(5);
         this.setPosition(p);
+		  this.setMoveRange(1);
+		  this.setAttackRange(3);
+		  this.setWeaponDamage(2);
+		  
+		  this.setIcon(new ImageIcon("images/galactica.jpg"));
     }
 }
