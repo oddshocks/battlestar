@@ -304,6 +304,15 @@
       }
    
     /**
+     * StatPanel accessor
+     * @return the StatPanel
+     */
+    public StatPanel getStatPanel()
+    {
+        return panelStat;
+    }
+
+    /**
      * Send a command to the server
      * @param pw the PrintWriter to send the command to
      * @param cmd the command
