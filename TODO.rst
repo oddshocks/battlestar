@@ -13,6 +13,7 @@ Urgent
 * [X] Add to design document
 * [X] Make sure we know what we're doing with the MPP file
 * [ ] Write code (get the game working!)
+* [ ] Fix indentation and whitespace (JGrasp seems to have blown it)
 
 Important
 ---------

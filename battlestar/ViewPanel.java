@@ -5,17 +5,17 @@
  * Spring 2012
  */
 
-   import java.awt.event.*;
-   import java.awt.*;
-   import java.util.*;
-   import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+import java.util.*;
+import javax.swing.*;
 
    public class ViewPanel extends JPanel implements BattleConstants
    {
       Vector<ViewZone> zones; // zones ViewObjects can be in
       ViewZone selectedZone = null;
       ViewZone actionZone = null;
-		BattleClient client = null;
+	    BattleClient client = null;
     
       private boolean moving; //Is the player attacking?
       private boolean attacking; //Is the player moving
@@ -24,10 +24,10 @@
      * ViewPanel constructor
      */
       public ViewPanel(BattleClient _client)
-      {
-         super();
+    {
+        super();
 			
-			client  = _client;
+            client  = _client;
          this.setLayout(new GridLayout(VIEW_SIZE, VIEW_SIZE));
       
          zones = new Vector<ViewZone>();
@@ -42,7 +42,7 @@
                   {
                      selectedZone = (ViewZone)e.getSource();
                   }
-						//Get an actionZone if the client is moving or attacking
+				//Get an actionZone if the client is moving or attacking
                   else if(attacking || moving)
                   {	
                      actionZone = (ViewZone)e.getSource();
@@ -75,8 +75,6 @@
       public void setShip(int position, Ship ship)
       {
          zones.get(position).setShip(ship);
-        // I didn't set the ImageIcon here because we'll do that in the ship
-        // classes. -- David
       }
     
 	 /**
