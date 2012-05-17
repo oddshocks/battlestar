@@ -14,7 +14,7 @@
 
    public class BattleClient extends JFrame implements BattleConstants
    {
-      ViewPanel panelView;
+        ViewPanel panelView;
       StatPanel panelStat;
       ControlPanel panelControl;
       ChatPanel panelChat;
@@ -28,7 +28,11 @@
    	
       PrintWriter pw = null;
       BufferedReader br = null;
-    
+  
+        // Why in God's name are there two boolean varaibles
+        // There are two races
+        // What
+        // And what the hell happened with indentation?
       private boolean human; //Is this client a human?
       private boolean cylon; //Is this client a cylon? 
       private boolean myTurn; //Is it my turn?
@@ -263,12 +267,11 @@
                   });
 						
 						//Select race
-						String[] races = {"Cylon", "Human"};
 						JOptionPane chooseRace = new JOptionPane();
 						String response  = (String)chooseRace.showInputDialog(BattleClient.this,
 														"Choose your race", "Choose Race",
 														JOptionPane.PLAIN_MESSAGE,
-														null, races, races[0]);
+														null, RACES, RACES[0]);
 						
 						if(response != null)
 						{
