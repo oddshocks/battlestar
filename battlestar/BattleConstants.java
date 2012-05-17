@@ -22,6 +22,10 @@ public interface BattleConstants
     
     final Color FONT_COLOR = new Color(238, 229, 222);
     final Color BACKGROUND_COLOR = new Color(139, 134, 130);
+    final Color BACKGROUND_HUMAN = new Color(105, 105, 105);
+    final Color FOREGROUND_HUMAN = new Color(173, 216, 230);
+    final Color BACKGROUND_CYLON = new Color(176, 196, 122);
+    final Color FOREGROUND_CYLON = new Color(128, 128, 128);
 
     final Font FONT_MAIN = new Font("Verdana", Font.BOLD, 12);
 
