@@ -26,6 +26,8 @@
          Border compound = new CompoundBorder(line, margin);
          this.setBorder(compound);
       
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
          ship = null;
       }
    
