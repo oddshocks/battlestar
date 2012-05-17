@@ -5,6 +5,9 @@
  * Spring 2012
  */
 
+import java.awt.Color;
+import java.awt.Font;
+
 public interface BattleConstants
 {
     /// VALUES /// 
@@ -15,9 +18,17 @@ public interface BattleConstants
 
     final int VIEW_SIZE = 12;
 
-    /// RACES ///
-    public static final String[] RACES = {"Human", "Cylon"};
+    /// STYLE ///
+    
+    final Color FONT_COLOR = new Color(238, 229, 222);
+    final Color BACKGROUND_COLOR = new Color(139, 134, 130);
 
+    final Font FONT_MAIN = new Font("Verdana", Font.BOLD, 12);
+
+    /// RACES ///
+    
+    public static final String[] RACES = {"Human", "Cylon"};
+    
     /// SHIPS ///
 
     final String H_GALACTICA = "Galactica"; // Can stealth for 1-3 turns
