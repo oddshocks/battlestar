@@ -17,3 +17,7 @@ their own work (to a seperate branch, please), even better. :)
 License
 -------
 Open source (based on our use of GitHub). Probably GNU GPL, but I have to check with everyone first.
+
+Attribution
+-----------
+- All sounds are from soundbible.com and are licensed under CC and public domain
