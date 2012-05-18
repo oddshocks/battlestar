@@ -275,11 +275,11 @@
 						
 						if(response != null)
 						{
-							if(response.equals(RACE_CYLON))
+							if(response.equals(RACE[1]))
 							{
 								command(pw, C_CYLON, null);
 							}
-							if(response.equals(RACE_HUMAN))
+							if(response.equals(RACE[0]))
 							{
 								command(pw, C_HUMAN, null);
 							}
@@ -580,11 +580,11 @@
                     // where else everyone used "human" or "Cylon" or whatever
                     // instead of making a constant.
 
-                     if (input.equalsIgnoreCase(RACE_HUMAN))
+                     if (input.equalsIgnoreCase(RACE[0]))
                      {
                         human = true;
                      }
-                     else if (input.equalsIgnoreCase(RACE_CYLON))
+                     else if (input.equalsIgnoreCase(RACE[1]))
                      {
                         cylon = true;
                      }	
