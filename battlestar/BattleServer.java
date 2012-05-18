@@ -123,7 +123,7 @@
          */
          public void run()
          {
-            String clientMsg; // message sent by client
+            String clientMsg = null; // message sent by client
          
             try
             {
@@ -138,11 +138,23 @@
                command(S_MSG, "Client " + id + " has connected!", 0);
                printMessage("Client " + id + " has connected.");
                printMessage("Connected clients : " + clients.size());
-            
+                
+
+
                while (reading) // Continously accept input from the client
                {
-                  clientMsg = br.readLine();
-                    
+                    try
+                    {
+                        clientMsg = br.readLine();
+                    }
+                    catch (SocketException sex)
+                    {   
+                        printMessage("Client " + id + " unexpectedly"
+                            + " disconnected.");
+                        clients.remove(this);
+                        printMessage("Connected clients : " + clients.size());
+                        break;
+                    }
                     /// COMMAND HANDLING ///
                
                   if (clientMsg.equals(C_QUIT)) // Quit
