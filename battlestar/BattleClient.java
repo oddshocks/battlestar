@@ -263,20 +263,19 @@
                   });
 						
 						//Select race
-						String[] races = {"Cylon", "Human"};
 						JOptionPane chooseRace = new JOptionPane();
 						String response  = (String)chooseRace.showInputDialog(BattleClient.this,
 														"Choose your race", "Choose Race",
 														JOptionPane.PLAIN_MESSAGE,
-														null, races, races[0]);
+														null, RACES, RACES[0]);
 						
 						if(response != null)
 						{
-							if(response.equals("Cylon"))
+							if(response.equals(RACE_CYLON))
 							{
 								command(pw, C_CYLON, null);
 							}
-							if(response.equals("Human"))
+							if(response.equals(RACE_HUMAN))
 							{
 								command(pw, C_HUMAN, null);
 							}
@@ -519,6 +518,9 @@
                   else if (input.equals(S_GO))
                   {
                      System.out.println("Got GO command"); // DEBUG
+                     String[] received = input.split(",");
+                     int id = Integer.parseInt(received[2]);
+                     panelStat.setID(id);
                      panelChat.print("The battle has begun!");
                                 // start the game
                   }
@@ -570,11 +572,15 @@
                   {
                      input = br.readLine();
                            		
-                     if (input.equals("human"))
+                    // I am using equalsIgnoreCase because I'm not sure
+                    // where else everyone used "human" or "Cylon" or whatever
+                    // instead of making a constant.
+
+                     if (input.equalsIgnoreCase(RACE_HUMAN))
                      {
                         human = true;
                      }
-                     else if (input.equals("cylon"))
+                     else if (input.equalsIgnoreCase(RACE_CYLON))
                      {
                         cylon = true;
                      }	
@@ -583,6 +589,7 @@
                   {
                      input = br.readLine();
                            		
+                    // Oh my God this is janky. D: -- David
                      if(input.equals("true"))
                      {
                         myTurn = true;
@@ -630,6 +637,11 @@
                   	
 							//Set the hits for the ship at the attack position
                      panelView.getZone(attackPosition).ship().setHits(hits);
+                    
+                    // Make ship flash.. should probably do in actual hit
+                    // method but you know what at this point I just want
+                    // a game
+                    panelView.getZone(attackPosition).hit();
                   }
                }
                   catch (NullPointerException npex)

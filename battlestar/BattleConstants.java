@@ -15,6 +15,11 @@ public interface BattleConstants
 
     final int VIEW_SIZE = 12;
 
+    /// RACES ///
+
+    final String RACE_HUMAN = "Human";
+    final String RACE_CYLON = "Cylon";
+
     /// SHIPS ///
 
     final String H_GALACTICA = "Galactica"; // Can stealth for 1-3 turns

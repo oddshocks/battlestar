@@ -62,7 +62,7 @@ import javax.swing.*;
       
          for (int i = 0; i < (VIEW_SIZE * VIEW_SIZE); i++)
          {
-            ViewZone newZone = new ViewZone();
+            ViewZone newZone = new ViewZone(client.getStatPanel());
             newZone.addActionListener(buttonListener);
             zones.add(newZone);
             this.add(zones.get(i));
