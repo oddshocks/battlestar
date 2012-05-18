@@ -6,19 +6,25 @@
  */
 
    import java.awt.*;
+   import java.util.Timer.*;
    import javax.swing.*;
    import javax.swing.border.*;
 
    public class ViewZone extends JButton
    {
       private Ship ship; // ship currently in location
+      private StatPanel panelStat;
    
     /**
      * Constructor
+     * @param sp the StatPanel from the client
      */
-      public ViewZone()
+      public ViewZone(StatPanel sp)
       {
          super();
+
+        statPanel = sp;
+
          this.setForeground(Color.WHITE);
          this.setBackground(Color.BLACK);
          Border line = new LineBorder(Color.BLUE);
@@ -27,10 +33,42 @@
          this.setBorder(compound);
       
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        
+        this.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                statPanel.update();
+            }
+        });
 
          ship = null;
       }
    
+    /**
+     * Returns previously selected zone to normal
+     */
+    public void unselected()
+    {
+        this.setForeground(Color.WHITE);
+    }
+
+    /**
+     * Changes foreground of selected zone
+     */
+    public void selected()
+    {
+        this.setForeground(Color.GREEN);
+    }
+
+    /**
+     * Makes attacked zone flash
+     */
+    public void hit()
+    {
+        // Make the zone flash red and white with a timer 
+    }
+
     /**
      * Return the ship in the location
      * @return the ship
