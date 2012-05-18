@@ -6,6 +6,7 @@
  */
 
    import java.awt.*;
+   import java.awt.event.*;
    import java.util.Timer.*;
    import javax.swing.*;
    import javax.swing.border.*;
@@ -23,7 +24,7 @@
       {
          super();
 
-        statPanel = sp;
+        panelStat = sp;
 
          this.setForeground(Color.WHITE);
          this.setBackground(Color.BLACK);
@@ -38,7 +39,7 @@
         {
             public void actionPerformed(ActionEvent e)
             {
-                statPanel.update();
+                panelStat.update();
             }
         });
 

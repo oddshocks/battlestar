@@ -14,7 +14,7 @@ import javax.swing.*;
 
 public class StatPanel extends JPanel implements BattleConstants
 {
-    private Timer timer; // For game time
+    private javax.swing.Timer timer; // For game time
     private JLabel lblTimer;
     private int secs;
     private int mins;
@@ -53,7 +53,7 @@ public class StatPanel extends JPanel implements BattleConstants
         /**
          * Internal Timer class
          */
-        timer = new Timer(1000, new ActionListener()
+        timer = new javax.swing.Timer(1000, new ActionListener()
             {
                 public void actionPerformed(ActionEvent e)
                 {
@@ -78,7 +78,7 @@ public class StatPanel extends JPanel implements BattleConstants
                         secs = 0;
                     }
 
-                    this.setText(String.format("Game Time - %2d:%2d:%2d",
+                    lblTimer.setText(String.format("Game Time - %2d:%2d:%2d",
                         hrs, mins, secs));
                 }
             });
@@ -117,5 +117,14 @@ public class StatPanel extends JPanel implements BattleConstants
         selectedShip = s;
 
         
+    }
+
+    /**
+     * Sets the match ID
+     * @param id the id
+     */
+    public void setID(int id)
+    {
+        matchID = id;
     }
 }
