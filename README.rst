@@ -22,3 +22,4 @@ All Battlestar trademarked names and phrases are property of their owners.
 Attribution
 -----------
 - All sounds are from soundbible.com and are licensed under CC and public domain
+- StatPanel icons are from the links located in docs/icons_links.odt
