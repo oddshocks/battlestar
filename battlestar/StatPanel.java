@@ -43,6 +43,7 @@ public class StatPanel extends JPanel implements BattleConstants
         selectedShip = null;
 
         taStats = new JTextArea();
+        taStats.setFont(FONT_STAT);
         taStats.setEditable(false);
         
         this.update();
@@ -92,13 +93,14 @@ public class StatPanel extends JPanel implements BattleConstants
         if (selectedShip != null)
         {
             taStats.setText("Statistics\n==========\n"
-                + "Match ID - " + matchID + "\n"
-                + "Turn - " + turn + "\n"
+                + ICON_ID + " Match ID - " + matchID + "\n"
+                + ICON_TURN + " Turn - " + turn + "\n"
                 + "\n-------------------------\n"
                 + "\nSELECTED SHIP STATS\n"
                 + selectedShip.name()
-                + "\nType - " + selectedShip.type()
-                + "\nHits - " + selectedShip.hits());
+                + "\n" + ICON_TYPE + " Type - " + selectedShip.type()
+                + "\n" + ICON_AID + " Hits - " + selectedShip.hits()
+                + selectedShip.icon());
         }
     }
 

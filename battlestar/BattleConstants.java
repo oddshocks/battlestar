@@ -7,6 +7,7 @@
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.*;
 
 public interface BattleConstants
 {
@@ -28,6 +29,7 @@ public interface BattleConstants
     final Color FOREGROUND_CYLON = new Color(128, 128, 128);
 
     final Font FONT_MAIN = new Font("Verdana", Font.BOLD, 12);
+    final Font FONT_STAT = new Font("Verdana", Font.BOLD, 16);
 
     /// RACES ///
     
@@ -65,4 +67,11 @@ public interface BattleConstants
 	final String S_INVALID_ATTACK = "INVALID ATTACK"; //request to attack denied
 	final String S_ATTACK = "ATTACK"; //attack a ship
 	final String S_DESTROY = "DESTROY"; //destroy a ship 
+
+    /// ICONS ///
+
+    final ImageIcon ICON_TURN = new ImageIcon("images/turnicon.png");
+    final ImageIcon ICON_AID = new ImageIcon("images/aidicon.gif");
+    final ImageIcon ICON_ID = new ImageIcon("images/idicon.jpeg");
+    final ImageIcon ICON_TYPE = new ImageIcon("images/typeicon.png");
 }
