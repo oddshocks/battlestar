@@ -22,7 +22,7 @@ Important
 * [X] Integrate chat client/server code
 * [X] Decide on interface appearance and functionality
 * [ ] Document classes and methods in design doc
-* [ ] Make UML (Nate is working on this)
+* [X] Make UML (Nate is working on this)
 * [X] Add functionality to stat pane (ideas include # of different ships, hits left on main ship, hits scored, turns, game time, match ID, etc)
 * [ ] Package for release (JAR file, manifest, make file)
 

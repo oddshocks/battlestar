@@ -16,7 +16,8 @@ their own work (to a seperate branch, please), even better. :)
 
 License
 -------
-Open source (based on our use of GitHub). Probably GNU GPL, but I have to check with everyone first.
+Battlestar is released under the GNU GPL in the name of education and freedom.
+All Battlestar trademarked names and phrases are property of their owners.
 
 Attribution
 -----------
