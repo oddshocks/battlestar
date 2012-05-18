@@ -89,14 +89,17 @@ public class StatPanel extends JPanel implements BattleConstants
      */
     public void update()
     {
-        taStats.setText("Statistics\n==========\n"
-            + "Match ID - " + matchID + "\n"
-            + "Turn - " + turn + "\n"
-            + "\n-------------------------\n"
-            + "\nSELECTED SHIP STATS\n"
-            + selectedShip.name()
-            + "\nType - " + selectedShip.type()
-            + "\nHits - " + selectedShip.hits());
+        if (selectedShip != null)
+        {
+            taStats.setText("Statistics\n==========\n"
+                + "Match ID - " + matchID + "\n"
+                + "Turn - " + turn + "\n"
+                + "\n-------------------------\n"
+                + "\nSELECTED SHIP STATS\n"
+                + selectedShip.name()
+                + "\nType - " + selectedShip.type()
+                + "\nHits - " + selectedShip.hits());
+        }
     }
 
     /**
