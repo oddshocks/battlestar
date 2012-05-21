@@ -1,22 +1,39 @@
+   import javax.swing.ImageIcon;
+	
 /**
  * A ship class for Battlestar
  * All ships extend this class.
- * Author: David Gay
  * Spring 2012
+ * @author Scott Gunther and David Gay
  */
 
-   import javax.swing.ImageIcon;
+   
 
    public class Ship extends ViewObject
    {
-      private String name; // name of ship (randomly generate later)
-      private String type; // type of ship (a constant)
-      private int hits; // number of hits the ship can take
-      private int position; // the position of the ship
-      private int moveRange; //the move range integer assigned specialy for each ship
-      private int attackRange; //the attack range integer assigned specialy for each ship
-      private int weaponDamage; //the weapon damage integer assigned specialy for each ship
-      private ImageIcon icon; // the ship's icon
+   	/** The name of the ship **/
+      private String name;
+   	
+   	/** The type of shipe **/
+      private String type;
+   	
+   	/** The number of hits the shp can take **/
+      private int hits;
+   	
+   	/** The position of the ship on the board **/
+      private int position;
+   	
+   	/** The number of squares a ship can move **/
+      private int moveRange;
+   	
+   	/** The number of square across which a ship can attack **/
+      private int attackRange;
+   	
+   	/** The damage of the ships weapons **/
+      private int weaponDamage;
+   	
+   	/** The ship's imamge icon **/
+      private ImageIcon icon;
     
     /**
      * Ship constructor
@@ -45,59 +62,59 @@
          position = _position;
       }
     
-	 	/**
-		 * Return the ships move range
-		 * @return the move range
-		 **/
+    	/**
+   	 * Return the ships move range
+   	 * @return the move range
+   	 **/
       public int getMoveRange()
       {
          return moveRange;
       }
-		
-		/**
-		 * Set the ships move range
-		 * @param _moveRange the ships move range
-		 **/
-		public void setMoveRange(int _moveRange)
-		{
-			moveRange = _moveRange;
-		}
-		
-		/**
-		 * Return the ship's attack range
-		 * @return the attackRange of the ship
-		 **/
-		public int getAttackRange()
-		{
-			return attackRange;
-		}
-		
-		/**
-		 * Set the ships attack range
-		 * @param _attackRange the ships attackRange
-		 **/
-		public void setAttackRange(int _attackRange)
-		{
-			attackRange = _attackRange;
-		}
-		
-		/**
-		 * Return the ship's weapon damage
-		 * @return the weaponDamage of the ship
-		 **/
-		public int getWeaponDamage()
-		{
-			return weaponDamage;
-		}
    	
-		/**
-		 * Set the ships weapon damage
-		 * @param _weaponDamage the ships weaponDamage
-		 **/
-		public void setWeaponDamage(int _weaponDamage)
-		{
-			weaponDamage = _weaponDamage;
-		}
+   	/**
+   	 * Set the ships move range
+   	 * @param _moveRange the ships move range
+   	 **/
+      public void setMoveRange(int _moveRange)
+      {
+         moveRange = _moveRange;
+      }
+   	
+   	/**
+   	 * Return the ship's attack range
+   	 * @return the attackRange of the ship
+   	 **/
+      public int getAttackRange()
+      {
+         return attackRange;
+      }
+   	
+   	/**
+   	 * Set the ships attack range
+   	 * @param _attackRange the ships attackRange
+   	 **/
+      public void setAttackRange(int _attackRange)
+      {
+         attackRange = _attackRange;
+      }
+   	
+   	/**
+   	 * Return the ship's weapon damage
+   	 * @return the weaponDamage of the ship
+   	 **/
+      public int getWeaponDamage()
+      {
+         return weaponDamage;
+      }
+   	
+   	/**
+   	 * Set the ships weapon damage
+   	 * @param _weaponDamage the ships weaponDamage
+   	 **/
+      public void setWeaponDamage(int _weaponDamage)
+      {
+         weaponDamage = _weaponDamage;
+      }
     /**
      * Returns the ship's icon
      * @return the ship's ImageIcon

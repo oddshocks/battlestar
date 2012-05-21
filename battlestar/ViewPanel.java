@@ -1,39 +1,49 @@
+   import java.awt.event.*;
+   import java.awt.*;
+   import java.util.*;
+   import javax.swing.*;
+	
 /**
  * ViewPanel
  * The view panel for Battlestar
- * Author: David Gay
  * Spring 2012
+ * @author Scott Gunther and David Gay
  */
 
-import java.awt.event.*;
-import java.awt.*;
-import java.util.*;
-import javax.swing.*;
+
 
    public class ViewPanel extends JPanel implements BattleConstants
    {
-      Vector<ViewZone> zones; // zones ViewObjects can be in
-      ViewZone selectedZone = null; // instantiate a null ViewZone instance
-      ViewZone actionZone = null; // instantiate a null ViewZone instance
-      BattleClient client = null; // instantiate a null battleClient instance
+   	/** Holds the ViewZones that make up the board **/
+      Vector<ViewZone> zones;
+   	
+   	/** The ViewZone that has been selected by the user **/
+      ViewZone selectedZone = null;
+   	
+   	/** The ViewZone that has been selected by the user after taking an action **/
+      ViewZone actionZone = null;
+   	
+   	/** The client that this panel is a part of **/
+      BattleClient client = null;
     
-      private boolean moving; //Is the player attacking?
-      private boolean attacking; //Is the player moving
+    	/** Indicated when the ship is moving **/
+      private boolean moving; 
+   	
+   	/** Indicates when the ship is attacking **/
+      private boolean attacking;
     
     /**
-     * ViewPanel parameterized constructor
-	  * @param _client BattleClient object
+     * ViewPanel constructor
      */
       public ViewPanel(BattleClient _client)
-    {
-        super();
-			
-            client  = _client;
+      {
+         super();
+      	
+         client  = _client;
          this.setLayout(new GridLayout(VIEW_SIZE, VIEW_SIZE));
       
          zones = new Vector<ViewZone>();
         
-         // Add actionlistener for buttons 
          ActionListener buttonListener = 
             new ActionListener()
             {
@@ -43,21 +53,22 @@ import javax.swing.*;
                   if(!attacking && !moving)
                   {
                      selectedZone = (ViewZone)e.getSource();
+                     client.getStatPanel().update(selectedZone);
                   }
-				//Get an actionZone if the client is moving or attacking
+                  //Get an actionZone if the client is moving or attacking
                   else if(attacking || moving)
                   {	
                      actionZone = (ViewZone)e.getSource();
-							if(moving)
-							{
-								client.command(client.getPW(), C_MOVE, zones.indexOf(selectedZone) + "," + zones.indexOf(actionZone));
-								setMoving(false);
-							}
-							if(attacking)
-							{
-								client.command(client.getPW(), C_ATTACK, zones.indexOf(selectedZone) + "," + zones.indexOf(actionZone));
-								setAttacking(false);
-							}
+                     if(moving)
+                     {
+                        client.command(client.getPW(), C_MOVE, zones.indexOf(selectedZone) + "," + zones.indexOf(actionZone));
+                        setMoving(false);
+                     }
+                     if(attacking)
+                     {
+                        client.command(client.getPW(), C_ATTACK, zones.indexOf(selectedZone) + "," + zones.indexOf(actionZone));
+                        setAttacking(false);
+                     }
                   }
                }
             };
@@ -73,65 +84,63 @@ import javax.swing.*;
    
     /**
      * Set ship in ViewZone
-	  * @param position of the ship
-	  * @param ship the ship object ship object
      */
       public void setShip(int position, Ship ship)
       {
          zones.get(position).setShip(ship);
       }
     
-	 /**
-	  * Set whether client is attacking
-	  * @param _attacking whether the client is attacking
-	  **/
+    /**
+     * Set whether client is attacking
+     * @param _attacking whether the client is attacking
+     **/
       public void setAttacking(boolean _attacking)
       {
          attacking = _attacking;
          if(!attacking)
          {
             actionZone = null;
-				selectedZone = null;
+            selectedZone = null;
          }
       }
     
-	 /**
-	  * Set whether the client is moving 
-	  * @param _moving whether the client is moving
-	  **/
+    /**
+     * Set whether the client is moving 
+     * @param _moving whether the client is moving
+     **/
       public void setMoving(boolean _moving)
       {
          moving = _moving;
          if(!moving)
          {
             actionZone = null;
-				selectedZone = null;
+            selectedZone = null;
          }
       }
-		
-	  /**
-	   * Get a ViewZone from the panel
-		* @param i the position of the ViewZone
-		* @return the sepcified ViewZone
-	  **/
-		public ViewZone getZone(int i)
-		{
-			return zones.get(i);
-		}
+   	
+     /**
+      * Get a ViewZone from the panel
+   	* @param i the position of the ViewZone
+   	* @return the sepcified ViewZone
+     **/
+      public ViewZone getZone(int i)
+      {
+         return zones.get(i);
+      }
     
-	  /**
-	   * Get the selected ViewZone
-		* @return the selectedZone
-		**/
+     /**
+      * Get the selected ViewZone
+   	* @return the selectedZone
+   	**/
       public ViewZone getSelectedZone()
       {
          return selectedZone;
       }
     
-	  /**
-	   * Get the action zone
-		* @return the actionZone
-		**/
+     /**
+      * Get the action zone
+   	* @return the actionZone
+   	**/
       public ViewZone getActionZone()
       {
          return actionZone;	

@@ -1,64 +1,70 @@
-/**
- * The class starts the client side of the game, establishing the connection 
- * to the Server based on the port variables stated in the constants class. 
- * The class takes in IP variable for connection through arguements.
- * The project is prepared for RIT's 4002-219 course
- * @author David Gay
- * @author Scott Gunther
- * @author Nate Osborn
- * @author Yigit Katkici
- */
-
    import java.awt.*;
    import java.awt.event.*;
    import java.io.*;
    import java.net.*;
    import java.util.*;
    import javax.swing.*;
-   import sun.audio.*;
+
+
+/**
+ * Battlestar Client
+ * For RIT's 4002-219 course
+ * Spring 2012
+ * @author Scott Gunther and David Gay
+ */
 
    public class BattleClient extends JFrame implements BattleConstants
    {
-        // instantiate panel objects for the GUI
-      ViewPanel panelView; // instantiate ViewPanel
-      StatPanel panelStat; // instantiate StatPanel
-      ControlPanel panelControl; // instantiate ControlPanel
-      ChatPanel panelChat; // // instantiate ChatPanel
-      JButton btnMove; // move command button
-      JButton btnAttack; // attack command button
+   	/** Panel that contains the game board **/
+      ViewPanel panelView;
+   	
+   	/** Panel that shows ship stats **/
+      StatPanel panelStat;
+   	
+   	/** Panel the displays action options **/
+      ControlPanel panelControl;
+   	
+   	/** Panel to contain the chat **/
+      ChatPanel panelChat;
+   	
+   	/** Button for moving**/
+      JButton btnMove;
+   	
+   	/** Button for attacking **/
+      JButton btnAttack;
+   	
+   	/** A frame that contains the wait message **/
+      JFrame jfWait;
+   	
+   	/** A label that tells the user the program is waiting for another client to connect **/
+      JLabel lblWait;
+   	   	
+   	/** The id of this client **/
+      int id;
    
-        /** A frame that contains the wait message **/
-        private JFrame jfWait;
-
-        /** A lbael that tells the user the program is waiting for another
-         * client to connect **/
-        private JLabel lblWait;
-
-        /** The ID of this client **/
-        private int id;
-     
-      String handle; // client identifier
+   	/** The name of the client either Cylon or Human **/
+      String handle;
    
-      	// instantiate statusbar as final
+   	/** Status to show messages relevant to client **/
       final StatusBar statusBar;
-		
-		// instantiate JTextField for input
+   	
+   	/** Text field for inputing server commands and sending chat messages **/
       final JTextField tfInput;
    	
-   		// instantiate printwriter and buffered reader
+   	/** Stream that is used for communicating to the server **/
       PrintWriter pw = null;
+   	
+   	/** The stream thats reads input from the server **/
       BufferedReader br = null;
-  
-        // Why in God's name are there two boolean varaibles
-        // There are two races
-        // What
-        // And what the hell happened with indentation?
-		// boolean for race selection
-      private boolean human; 
-		// is this client a cylon?
+   	
+   	/** Indicates if this is client is a human or not **/
+      private boolean human;
+   	
+   	/** Indicates if this client is a cylon or not **/
       private boolean cylon; 
-		// Boolean for turn is it my turn?
-      private boolean myTurn; 
+   	
+   	/** Indicates if it is this client's turn **/
+      private boolean myTurn;
    
       boolean reading; // are we reading from the server?
    
@@ -84,7 +90,6 @@
          menuGame.setMnemonic('G');
          JMenuItem miExit = new JMenuItem("Exit");
          miExit.setMnemonic('E');
-         // add ActionListener to the exit button
          miExit.addActionListener(
                new ActionListener()
                {
@@ -98,7 +103,6 @@
          menuHelp.setMnemonic('H');
          JMenuItem miAbout = new JMenuItem("About");
          miAbout.setMnemonic('A');
-         // add ActionListener to the about button
          miAbout.addActionListener(
                new ActionListener()
                {
@@ -145,8 +149,13 @@
         // Finalize the window
          tfInput.requestFocusInWindow();
          statusBar.setMessage("Program started!");
+      	
+      	///// SCOTT  CHANGES //////
+      	
          //this.setVisible(true);
-
+      	
+      	///// SCOTT CHANGES ///////
+      	
         // Control panel buttons
          btnMove = new JButton("Move");
          btnAttack = new JButton("Attack");
@@ -167,9 +176,9 @@
             };
          btnMove.addActionListener(buttonListener);
          btnAttack.addActionListener(buttonListener);
-			panelControl.add(btnMove);
-			panelControl.add(btnAttack);
-
+         panelControl.add(btnMove);
+         panelControl.add(btnAttack);
+      
         /// START SERVER CONNECTION CODE ///
         
          try
@@ -184,10 +193,10 @@
                 new OutputStreamWriter(s.getOutputStream()));
          
             /// SERVER COMMAND HANDLING ///
-         	
+         	       	
             Thread serverRead = new ServerRead();
             serverRead.start();
-
+         
             /// END SERVER COMMAND HANDLING ///
             
             // Close connections if the client is closed
@@ -283,38 +292,13 @@
                            }
                            else if(cmd.equals(C_ATTACK)) //Attack a ship
                            {
-										sendAttackCommand();
+                              sendAttackCommand();
                            }
                             // Clear the input text field
                            tfInput.setText("");
                         }
                      }
                   });
-						
-						//Select race
-						JOptionPane chooseRace = new JOptionPane();
-						String response  = (String)chooseRace.showInputDialog(BattleClient.this,
-														"Choose your race", "Choose Race",
-														JOptionPane.PLAIN_MESSAGE,
-														null, RACES, RACES[0]);
-						
-						if(response != null)
-						{
-							if(response.equals(RACES[1]))
-							{
-								command(pw, C_CYLON, null);
-							}
-							if(response.equals(RACES[0]))
-							{
-								command(pw, C_HUMAN, null);
-							}
-						}
-
-						//Ready up
-						JOptionPane.showMessageDialog(BattleClient.this, "Click OK when you are ready",
-																"Ready Up", JOptionPane.PLAIN_MESSAGE);
-						command(pw, C_READY, null);
-													
          
             /// END CLIENT COMMAND HANDLING ///
          }
@@ -329,48 +313,17 @@
             }
       
         /// END SERVER CONNECTION CODE ///
-
-            playSound(SOUND_WELCOME);
       }
    
-    /**
-     * Play a sound
-     * @param sc the constant variable representing the path to the sound file
-     */
-    public void playSound(String sc)
-    {
-        try
-        {
-            InputStream in = null;
-
-            if (sc == SOUND_WELCOME)
-            {
-                in = new FileInputStream(SOUND_WELCOME);
-            }
-            AudioStream as = new AudioStream(in);
-            AudioPlayer.player.start(as);
-        }
-        catch (IOException ioex)
-        {
-            System.out.println("Fatal error: could not play sound");
-            ioex.printStackTrace();
-        }
-        catch (Exception ex)
-        {
-            System.out.println("Fatal error when attempting to play sound");
-            ex.printStackTrace();
-        }
-    }
-    
     /**
      * StatPanel accessor
      * @return the StatPanel
      */
-    public StatPanel getStatPanel()
-    {
-        return panelStat;
-    }
-
+      public StatPanel getStatPanel()
+      {
+         return panelStat;
+      }
+   
     /**
      * Send a command to the server
      * @param pw the PrintWriter to send the command to
@@ -420,32 +373,32 @@
          this.processWindowEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
       }
    	
-		/**
-		 * This method validates it is the client's turn,
-		 * the selected ship belongs to the clietn, and 
-		 * the selected button is not null. Then it sends
-		 * and attack command to the server with two positions
-		 **/
+   	/**
+   	 * This method validates it is the client's turn,
+   	 * the selected ship belongs to the clietn, and 
+   	 * the selected button is not null. Then it sends
+   	 * and attack command to the server with two positions
+   	 **/
       public void sendAttackCommand()
       {
-			//Validate turn
+      	//Validate turn
          if(!myTurn)
          {
             statusBar.setMessage("It is not your turn");	
          }
          else
          {
-				//Make sure the zone is not null
+         	//Make sure the zone is not null
             if(panelView.getSelectedZone() == null)
             {
                statusBar.setMessage("You must select a ship to move");
             }
             else
             {
-					//Get the type of ship
-				   String shipType = panelView.getSelectedZone().ship().type();
-					
-					//Validate the ship belongs to the client
+            	//Get the type of ship
+               String shipType = panelView.getSelectedZone().ship().type();
+            	
+            	//Validate the ship belongs to the client
                if(cylon && (shipType.equals(H_VIPER) ||
                                     				shipType.equals(H_RAPTOR) ||
                                     				shipType.equals(H_GALACTICA)))
@@ -460,39 +413,39 @@
                }
                else
                {
-						//Allow the player to attack
+               	//Allow the player to attack
                   panelView.setAttacking(true);
                }
             }
          }
       }
    	
-		/**
-		 * This method validates that it is the client's turn, 
-		 * the selected ship belongs to the client, and the selected JButton
-		 * is not null then sends a move command with two position
-		 * to the server to validate
-		 **/
+   	/**
+   	 * This method validates that it is the client's turn, 
+   	 * the selected ship belongs to the client, and the selected JButton
+   	 * is not null then sends a move command with two position
+   	 * to the server to validate
+   	 **/
       public void sendMoveCommand()
       {
-			//Validate turn
+      	//Validate turn
          if(!myTurn)
          {
             statusBar.setMessage("It is not your turn");
          }
          else
          {
-				//Make sure the zone clicked has a ship
+         	//Make sure the zone clicked has a ship
             if(panelView.getSelectedZone().ship() == null)
             {
                statusBar.setMessage("You must select a ship to move");
             }
             else
             {
-					//Get the type of ship
+            	//Get the type of ship
                String shipType = panelView.getSelectedZone().ship().type();
-					
-					//Validate the ship belongs to the client
+            	
+            	//Validate the ship belongs to the client
                if(cylon && (shipType.equals(H_VIPER) ||
                											shipType.equals(H_RAPTOR) ||
                											shipType.equals(H_GALACTICA)))
@@ -507,7 +460,7 @@
                }
                else
                {
-						//Allow the player to move
+               	//Allow the player to move
                   panelView.setMoving(true);
                }
             }
@@ -541,26 +494,28 @@
          }
       }
    	
-		/**
-		 * Gets the printwriter of the client
-		 * @return the printwriter
-		 **/
+   	/**
+   	 * Gets the printwriter of the client
+   	 * @return the printwriter
+   	 **/
       public PrintWriter getPW()
       {
          return pw;
       }
    	
-    /**
-     * Show a JOptionPane which allows the user to choose their race
-     */
-    public void chooseRace()
+   	/////// SCOTT CHANGES ////////
+   	/**
+   	 * Show a JOptionPane which allows the use
+   	 * to choose their race
+   	**/
+      public void chooseRace()
       {
          Thread chooseRace = 
             new Thread()
             {
                public void run()
                {
-						//Coninuously show option to choose race
+               	//Coninuously show option to choose race
                   while(!human && !cylon)
                   {
                      JOptionPane chooseRace = new JOptionPane();
@@ -580,16 +535,16 @@
                            command(pw, C_HUMAN, null);
                         }
                      }
-							//Need to sleep because client must wait for server
-							//to confirm or deny the race choice
-							try
-							{
-								this.sleep(500);
-							}
-							catch(InterruptedException e)
-							{
-								e.printStackTrace();
-							}
+                  	//Need to sleep because client must wait for server
+                  	//to confirm or deny the race choice
+                     try
+                     {
+                        this.sleep(500);
+                     }
+                        catch(InterruptedException e)
+                        {
+                           e.printStackTrace();
+                        }
                   }
                	//Ready up
                   JOptionPane.showMessageDialog(BattleClient.this, "Click OK when you are ready",
@@ -599,11 +554,13 @@
             };
          chooseRace.start();
       }
-
-		/**
-		 * Thread to continiously read commands in from the server
-		 *
-		 **/
+   	
+   	////// END SCOTT CHANGES //////
+   	
+   	/**
+   	 * Thread to continiously read commands in from the server
+   	 *
+   	 **/
       class ServerRead extends Thread
       {
          public void run()
@@ -628,9 +585,9 @@
                   else if (input.equals(S_GO))
                   {
                      System.out.println("Got GO command"); // DEBUG
-                     String[] received = input.split(",");
-                     int id = Integer.parseInt(received[2]);
-                     panelStat.setID(id);
+                  //                      String[] received = input.split(",");
+                  //                      int id = Integer.parseInt(received[2]);
+                  //                      panelStat.setID(id);
                      panelChat.print("The battle has begun!");
                                 // start the game
                   }
@@ -673,7 +630,7 @@
                      {
                         newShip = new ShipHeavyRaider(name, position);
                      }
-
+                  
                      // Send the ship to the ViewZone
                      panelView.setShip(Integer.parseInt(
                                     shipAttributes[3]), newShip);
@@ -681,42 +638,41 @@
                   else if(input.equals(S_RACE)) //Set the clients race
                   {
                      input = br.readLine();
-                           		
-                    // I am using equalsIgnoreCase because I'm not sure
-                    // where else everyone used "human" or "Cylon" or whatever
-                    // instead of making a constant.
-
-                     if (input.equalsIgnoreCase(RACES[0]))
+                  
+                     if (input.equals("human"))
                      {
                         human = true;
+                        System.out.println("I am now a human");
                         handle = "Human";
                      }
-                     else if (input.equalsIgnoreCase(RACES[1]))
+                     else if (input.equals("cylon"))
                      {
                         cylon = true;
+                        System.out.println("I am now a cylon");
                         handle = "Cylon";
-                     }	
+                     }
+                  		
                   }
                   else if(input.equals(S_TURN)) //Set the clients turn
                   {
                      input = br.readLine();
-                     
-                    String[] turnInfo = input.split(",");
-                        String turn = turnInfo[0];
-                        String turnCount = turnInfo[1];
-                        panelStat.setTurn(turnCount);
-
+                  	
+                  // 							panelStat.incTurn();
+                           		
                     // Oh my God this is janky. D: -- David
                      if(input.equals("true"))
                      {
-                     	myTurn = true;
-                     	statusBar.setMessage("It is your turn.");
+                     	////// SCOTT CHANGES /////
+                        statusBar.setMessage("It is your turn");
+                     	////// END SCOTT CHANGES //////
+                        myTurn = true;
                      }
                      if(input.equals("false"))
                      {
+                     	////// SCOTT CHANGES /////
+                        statusBar.setMessage("It is your opponents turn");
+                     	////// END SCOTT CHANGES //////
                         myTurn = false;
-                     	statusBar.setMessage("It is your "
-                     		+ "opponent's turn.");
                      }
                   }
                   else if(input.equals(S_INVALID_MOVE)) //Cannot Move to that position
@@ -734,9 +690,10 @@
                   	
                   	//Move the ship to new position
                      panelView.setShip(movePosition, panelView.getZone(shipPosition).ship());
-							
-							//Clear previous position
+                  	
+                  	//Clear previous position
                      panelView.getZone(shipPosition).clearShip();
+                  	
                   	
                      panelView.setMoving(false);
                   }
@@ -749,20 +706,18 @@
                   }
                   else if(input.equals(S_ATTACK)) //Attack a ship
                   {
-							//Read in position and number of hits to be set to new ship
+                  	//Read in position and number of hits to be set to new ship
                      input = br.readLine();
                      String[] info = input.split(",");
                      int attackPosition = Integer.parseInt(info[0]);
                      int hits = Integer.parseInt(info[1]);
                   	
-							//Set the hits for the ship at the attack position
+                  	//Set the hits for the ship at the attack position
                      panelView.getZone(attackPosition).ship().setHits(hits);
                     
-                    // Make ship flash.. should probably do in actual hit
-                    // method but you know what at this point I just want
-                    // a game
-                    panelView.getZone(attackPosition).hit();
                   }
+                  
+                  ///// SCOTT CHANGES ///////
                   else if(input.equals(S_WIN)) //Client has won
                   {
                      JOptionPane.showMessageDialog(BattleClient.this, "You have won");
@@ -796,6 +751,7 @@
                   	
                      chooseRace();
                   }
+               	///// END SCOTT CHANGES ///////
                }
                   catch (NullPointerException npex)
                   {

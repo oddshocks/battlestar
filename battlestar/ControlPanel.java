@@ -12,8 +12,7 @@ import javax.swing.*;
 public class ControlPanel extends JPanel implements BattleConstants
 {
     /**
-     * ControlPanel default constructor
-	 * Creates a new Label for control panel
+     * ControlPanel constructor
      */
     public ControlPanel()
     {
