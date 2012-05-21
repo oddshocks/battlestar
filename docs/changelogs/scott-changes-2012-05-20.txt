@@ -1,0 +1,36 @@
+Code changes are marked with:
+//// SCOTT CHANGES /////
+
+ *** Changes ***
+
+//// END SCOTT CHANGES //////
+
+BattleClient
+1. Added instance variable "id" to keep track of id
+2. Added instance variable "jfWait" the frame for waiting
+3. Added instance variable "lblWait" the label that says waiting
+4. Commented out this.setVisible(true) after GUI elements are created
+	This is because the client now waits for the S_INITIALIZE command
+	this command is sent by the server after 2 clients have connected
+5. Added choose race method which allows the user to pick the race and
+	then asks if the user is ready.
+6. Added code for handling the S_INITIALIZE command
+7. Added code for handling the S_ID command
+8. Changed code in the S_RACE command because the Strings that 
+	the command was being compared to are no longer instance varaibles.
+9. Added code for handling the S_LOSE command - the program just exits
+	because I don't want to reset everything for a new game
+10. Added code for handling the S_WIN command - program exits like the lose
+11. In the S_TRUN command handling added statusBar messages to help users know its their turn
+
+BattleServer
+1. Server now sends the client its ID
+2. The server will send S_INITIALIZE after the second client connects
+3. Added method "checkWin()" that checks if a race's ships have all been
+	destroyed. If not, end method. If so, send appropriate S_LOSE and S_WIN commands
+4. The "checkWin()" method is called in the "validateAttack()" method under the block of code
+	with the comment "Check if ship has been destroyed".
+5. Added javadoc comment for the "validateMove()" method  
+
+BattleConstants
+1. Added commands S_LOSE, S_WIN, S_INITIALIZE, S_ID
