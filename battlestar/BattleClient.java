@@ -20,9 +20,17 @@
       ControlPanel panelControl;
       ChatPanel panelChat;
       JButton btnMove, btnAttack;
-   	
-     
    
+        /** A frame that contains the wait message **/
+        private JFrame jfWait;
+
+        /** A lbael that tells the user the program is waiting for another
+         * client to connect **/
+        private JLabel lblWait;
+
+        /** The ID of this client **/
+        private int id;
+     
       String handle; // client identifier
    
       final StatusBar statusBar;
@@ -122,8 +130,8 @@
         // Finalize the window
          tfInput.requestFocusInWindow();
          statusBar.setMessage("Program started!");
-         this.setVisible(true);
-      	
+         //this.setVisible(true);
+
         // Control panel buttons
          btnMove = new JButton("Move");
          btnAttack = new JButton("Attack");
@@ -527,6 +535,56 @@
          return pw;
       }
    	
+    /**
+     * Show a JOptionPane which allows the user to choose their race
+     */
+    public void chooseRace()
+      {
+         Thread chooseRace = 
+            new Thread()
+            {
+               public void run()
+               {
+						//Coninuously show option to choose race
+                  while(!human && !cylon)
+                  {
+                     JOptionPane chooseRace = new JOptionPane();
+                     String response  = (String)chooseRace.showInputDialog(BattleClient.this,
+                           						"Choose your race", "Choose Race",
+                           						JOptionPane.PLAIN_MESSAGE,
+                           						null, RACES, RACES[0]);
+                     
+                     if(response != null)
+                     {
+                        if(response.equals(RACES[1]))
+                        {
+                           command(pw, C_CYLON, null);
+                        }
+                        if(response.equals(RACES[0]))
+                        {
+                           command(pw, C_HUMAN, null);
+                        }
+                     }
+							//Need to sleep because client must wait for server
+							//to confirm or deny the race choice
+							try
+							{
+								this.sleep(500);
+							}
+							catch(InterruptedException e)
+							{
+								e.printStackTrace();
+							}
+                  }
+               	//Ready up
+                  JOptionPane.showMessageDialog(BattleClient.this, "Click OK when you are ready",
+                        									"Ready Up", JOptionPane.PLAIN_MESSAGE);
+                  command(pw, C_READY, null);
+               }
+            };
+         chooseRace.start();
+      }
+
 		/**
 		 * Thread to continiously read commands in from the server
 		 *
@@ -636,11 +694,14 @@
                     // Oh my God this is janky. D: -- David
                      if(input.equals("true"))
                      {
-                        myTurn = true;
+                     	myTurn = true;
+                     	statusBar.setMessage("It is your turn.");
                      }
                      if(input.equals("false"))
                      {
                         myTurn = false;
+                     	statusBar.setMessage("It is your "
+                     		+ "opponent's turn.");
                      }
                   }
                   else if(input.equals(S_INVALID_MOVE)) //Cannot Move to that position
@@ -686,6 +747,39 @@
                     // method but you know what at this point I just want
                     // a game
                     panelView.getZone(attackPosition).hit();
+                  }
+                  else if(input.equals(S_WIN)) //Client has won
+                  {
+                     JOptionPane.showMessageDialog(BattleClient.this, "You have won");
+                     quit();
+                  }
+                  else if(input.equals(S_LOSE)) //Client has lost
+                  {
+                     JOptionPane.showMessageDialog(BattleClient.this, "You have lost");
+                     quit();
+                  }
+                  else if(input.equals(S_ID)) //Get client id
+                  {
+                     input = br.readLine();
+                     id = Integer.parseInt(input);
+                  	
+                     jfWait = new JFrame("Waiting for an opponent");
+                     lblWait = new JLabel("Waiting for an opponent");
+                     if(id == 1)
+                     {
+                        jfWait.add(lblWait, BorderLayout.CENTER);
+                        jfWait.setSize(200, 200);
+                        jfWait.pack();
+                        jfWait.setLocation(600, 600);
+                        jfWait.setVisible(true);
+                     }
+                  }
+                  else if(input.equals(S_INITIALIZE))
+                  {
+                     BattleClient.this.setVisible(true);
+                     jfWait.setVisible(false);
+                  	
+                     chooseRace();
                   }
                }
                   catch (NullPointerException npex)

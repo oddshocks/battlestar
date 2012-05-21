@@ -141,6 +141,11 @@
                printMessage("Client " + id + " has connected.");
                printMessage("Connected clients : " + clients.size());
                 
+				command(S_ID, "" + id, id);
+				if (clients.size() == 2)
+				{
+					command(S_INITIALIZE, null, 0);
+				}
 
 
                while (reading) // Continously accept input from the client
@@ -371,6 +376,8 @@
 							cylonShips.remove(cylonShips.indexOf(opponentShip));
 						if(cylon)
 							humanShips.remove(humanShips.indexOf(opponentShip));
+							
+						checkWin();
 					}
 					//Issue attack command
 					else
@@ -388,6 +395,10 @@
 				
 			}
 			
+			/**
+		  	 * Validates the move of a ship and sends
+		  	 * either S_MOVE or S_INVALID_MOVE back to the client
+		  	**/
 			public void validateMove(String[] positions)
 			{
 				int shipPosition = Integer.parseInt(positions[0]);
@@ -457,6 +468,48 @@
 				}
 
 			}
+			
+			/**
+		  	 * After a ship is destroyed the games checks to see
+		  	 * if a client has won the game. Sends S_WIN or S_LOSE
+		  	 * or no command if no one has won yet.
+		  	**/
+		     public void checkWin()
+		     {
+		     	//If arrays still have ships end method
+		        if(humanShips.size() > 0 && cylonShips.size() > 0)
+		           return;
+		     	
+		     	//If all human ships destroyed then send appropriate win and lose messages
+		        if(humanShips.size() == 0)
+		        {
+		           if(human)
+		           {
+		              command(S_LOSE, null, id);
+		              command(S_WIN, null, opponentId + 1);
+		           }
+		           else if(cylon)
+		           {
+		              command(S_WIN, null, id);
+		              command(S_LOSE, null, opponentId + 1);
+		           }
+		        }
+		     	
+		     	//If all cylon ships destroyed then send appropriate win and lose messages
+		        if(cylonShips.size() == 0)
+		        {
+		           if(cylon)
+		           {
+		              command(S_LOSE, null, id);
+		              command(S_WIN, null, opponentId + 1);
+		           }
+		           else if(human)
+		           {
+		              command(S_WIN, null, id);
+		              command(S_LOSE, null, opponentId + 1);
+		           }
+		        }
+		     }
 			
 			/**
 			 * This method calculates the distance between to points

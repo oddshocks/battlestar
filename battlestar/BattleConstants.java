@@ -71,6 +71,19 @@ public interface BattleConstants
 	final String S_INVALID_ATTACK = "INVALID ATTACK"; //request to attack denied
 	final String S_ATTACK = "ATTACK"; //attack a ship
 	final String S_DESTROY = "DESTROY"; //destroy a ship 
+	
+	/** Server command to tell client it has won the game **/
+	final String S_WIN = "WIN";
+	
+	/** Server command to tell client it has lost the game **/
+	final String S_LOSE = "LOSE";
+	
+	/** Server command to tell client it can initialize the GUI **/
+	final String S_INITIALIZE = "INITIALIZE";
+	
+	/** Server command to tell the client what its id is **/
+	final String S_ID = "ID";
+
 
     /// ICONS ///
 
