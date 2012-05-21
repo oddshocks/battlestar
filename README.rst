@@ -13,6 +13,10 @@ Victory is achieved by destroying your opponent's main ship (the Cylons must
 destroy the Humans' Galactica, and the Humans must destroy the Cylons'
 Basestar).
 
+- Each turn, a player issues a Move or Attack command to one of their ships
+- Players can chat via a side panel
+- Another side panel displays information about the selected ship
+
 Ship Stats
 ----------
 

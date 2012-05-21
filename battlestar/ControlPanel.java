@@ -17,6 +17,5 @@ public class ControlPanel extends JPanel implements BattleConstants
     public ControlPanel()
     {
         super();
-        this.add(new JLabel("Control panel"));
     }
 }
