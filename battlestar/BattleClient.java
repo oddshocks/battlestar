@@ -101,24 +101,6 @@
          menuGame.add(miExit);
          JMenu menuHelp = new JMenu("Help");
          menuHelp.setMnemonic('H');
-         JMenuItem miHelp = new JMenuItem("Help");
-         miHelp.setMnemonic('H');
-         miHelp.addActionListener(
-            new ActionListener()
-                {
-                    public void actionPerformed(ActionEvent ae)
-                    {
-                        JOptionPane.showMessageDialog(null,
-                            "On your turn, click a ship to select it." +
-                            "\nChoose to move or attack via the command bar." +
-                            "\nSelect a target zone to attack or move to." +
-                            "\nWin by destroying the enemy's main ship." +
-                            "\nFor more information, see README.rst",
-                            "Game Help",
-                            JOptionPane.INFORMATION_MESSAGE);
-                    }
-                });
-         menuHelp.add(miHelp);
          JMenuItem miAbout = new JMenuItem("About");
          miAbout.setMnemonic('A');
          miAbout.addActionListener(
@@ -128,8 +110,7 @@
                   {
                      JOptionPane.showMessageDialog(null,
                         "Battlestar" +
-                        "\nDavid Gay, Scott Gunther" +
-                        "\nYigit Katkici, Nate Osborn" +
+                        "\nSome dudes" +
                         "\nFor RIT 4002-219" +
                         "\nSpring 2012",
                         "About Battlestar",

@@ -30,8 +30,8 @@
         
          this.setLayout(new GridLayout(0, 1));
         
-         this.add(new JLabel("Ship Statistics"));
-
+         this.add(new JLabel("StatPanel"));
+      
          selectedShip = null;
       
          taStats = new JTextArea();
@@ -51,12 +51,9 @@
          
             selectedShip = aZone.ship();
             taStats.setText(
-                 "Type - " + selectedShip.type()
-               + "\nHits - " + selectedShip.hits()
-               + "\nMove - " + selectedShip.getMoveRange()
-               + "\nRange - " + selectedShip.getAttackRange()
-               + "\nPower - " + selectedShip.getWeaponDamage()
-               );
+               "\nSELECTED SHIP STATS\n"
+               + "\n" + " Type - " + selectedShip.type()
+               + "\n" + " Hits - " + selectedShip.hits());
          }
       }
    }
