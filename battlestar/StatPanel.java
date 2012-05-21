@@ -23,6 +23,10 @@ public class StatPanel extends JPanel implements BattleConstants
       private int matchID; // integer to keep track of games played
       private String turn; // String to keep track of turns
    
+   	  
+   	  private JButton btnShip = new JButton();
+   	  
+   	  
       private Ship selectedShip; // instantiate a ship instance as selected ship
     
       private JTextArea taStats; // text area where stats are displayed
@@ -34,9 +38,7 @@ public class StatPanel extends JPanel implements BattleConstants
     {
         super();
         
-        this.setLayout(new GridLayout(0, 1));
-        
-        this.add(new JLabel("StatPanel"));
+        this.setLayout(new GridLayout(2, 2));
         
         lblTimer = new JLabel();
 
@@ -45,9 +47,21 @@ public class StatPanel extends JPanel implements BattleConstants
         taStats = new JTextArea();
         taStats.setFont(FONT_STAT);
         taStats.setEditable(false);
-        
-        this.add(taStats);
-        this.add(lblTimer);
+		 
+          JPanel bPanel = new JPanel();
+		  bPanel.setLayout(new GridLayout(4,0));
+		  JButton btnID = new JButton(ICON_ID);
+		  JButton btnTurn = new JButton(ICON_TURN);
+		  JButton btnType = new JButton(ICON_TYPE);
+		  JButton btnAid = new JButton(ICON_AID);
+		  bPanel.add(btnID);
+		  bPanel.add(btnTurn);
+		  bPanel.add(btnType);
+		  bPanel.add(btnAid);
+		  this.add(bPanel); 
+		  this.add(taStats);
+          this.add(lblTimer);
+		  this.add(btnShip);
 
         /**
          * Internal Timer class
@@ -84,21 +98,41 @@ public class StatPanel extends JPanel implements BattleConstants
     }
 
     /**
-     * Update the StatPanel
+     * Start the game clock
      */
-    public void update()
+    public void startClock()
     {
-        if (selectedShip != null)
+        timer.start();
+    }
+
+    /**
+     * Stop the game clock
+     */
+    public void stopClock()
+    {
+        timer.stop();
+    }
+	
+    /**
+     * Update the StatPanel
+     * @param vz the ViewZone to update from
+     */
+    public void update(ViewZone vz)
+    {
+        if (vz.ship() != null)
         {
+            selectedShip = vz.ship();
+            this.remove(btnShip);
+            btnShip = new JButton(selectedShip.icon());
             taStats.setText("Statistics\n==========\n"
-                + ICON_ID + " Match ID - " + matchID + "\n"
-                + ICON_TURN + " Turn - " + turn + "\n"
+                + "Match ID - " + matchID + "\n\n"
+                + "Turn - " + turn + "\n"
                 + "\n-------------------------\n"
                 + "\nSELECTED SHIP STATS\n"
-                + selectedShip.name()
-                + "\n" + ICON_TYPE + " Type - " + selectedShip.type()
-                + "\n" + ICON_AID + " Hits - " + selectedShip.hits()
-                + selectedShip.icon());
+                + "Name - " + selectedShip.name()
+                + "\nType - " + selectedShip.type()
+                + "\nHits - " + selectedShip.hits());
+            this.add(btnShip);
         }
     }
 
