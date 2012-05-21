@@ -21,18 +21,17 @@ Important
 * [X] Lay out classes (I will do this once we finish the rules)
 * [X] Integrate chat client/server code
 * [X] Decide on interface appearance and functionality
-* [ ] Document classes and methods in design doc
+* [X] Document classes and methods in design doc
 * [X] Make UML (Nate is working on this)
 * [X] Add functionality to stat pane (ideas include # of different ships, hits left on main ship, hits scored, turns, game time, match ID, etc)
-* [ ] Package for release (JAR file, manifest, make file)
+* [X] Package for release (JAR file, manifest, make file)
 
 Needed
 ------
 * [X] Develop board interface
 * [X] Get ship/board graphics
 * [X] Decide on stats used in stats pane
-* [ ] Extensively test all actions
-* [ ] Add additional menu functionality (get some more feedback from the program, perhaps?)
+* [X] Test all actions
 
 Wanted
 ------
@@ -44,3 +43,4 @@ Wanted
 * [ ] Have the server generate a log file
 * [ ] Have the server generate a data file to save wins or whatever
 * [ ] Additional stats on stat pane
+* [ ] Add additional menu functionality (get some more feedback from the program, perhaps?)
