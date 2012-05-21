@@ -1,8 +1,8 @@
 /**
  * Battlestar Client
  * For RIT's 4002-219 course
- * Author: David Gay and Scott Gunther
  * Spring 2012
+ * @author David Gay, Scott Gunther, Yigit K, Nathan Osborn (sorry, Yigit!)
  */
 
    import java.awt.*;
@@ -616,16 +616,23 @@
                      if (input.equalsIgnoreCase(RACES[0]))
                      {
                         human = true;
+                        handle = "Human";
                      }
                      else if (input.equalsIgnoreCase(RACES[1]))
                      {
                         cylon = true;
+                        handle = "Cylon";
                      }	
                   }
                   else if(input.equals(S_TURN)) //Set the clients turn
                   {
                      input = br.readLine();
-                           		
+                     
+                    String[] turnInfo = input.split(",");
+                        String turn = turnInfo[0];
+                        String turnCount = turnInfo[1];
+                        panelStat.setTurn(turnCount);
+
                     // Oh my God this is janky. D: -- David
                      if(input.equals("true"))
                      {

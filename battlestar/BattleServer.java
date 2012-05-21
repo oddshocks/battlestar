@@ -15,6 +15,8 @@
 		
 		private Vector<Ship> cylonShips; // Cylon ships
       private Vector<Ship> humanShips; // Human ships
+
+      private int turn = 0;
     
       private boolean gameStarted; // has the game started?
    
@@ -201,11 +203,12 @@
                            printMessage("Both clients ready, game starting...");
                            command(S_MSG, "Both players are ready.", 0);
                                 
-                                // Start the game
+                        // Start the game
                            startGame();
                         		  
                            gameStarted = true;
-                           command(S_TURN, "true" , id);
+                           turn++;
+                           command(S_TURN, "true," + turn, id);
                            myTurn = true;
                         }
                      }
@@ -506,8 +509,9 @@
 			{
 				myTurn = false;
 				clients.get(opponentId).setMyTurn(false);
-				command(S_TURN, "false", id); 
-				command(S_TURN, "true", opponentId +1);
+                turn++;
+				command(S_TURN, "false," + turn, id); 
+				command(S_TURN, "true," + turn, opponentId +1);
 			}
 			
 			public void setMyTurn(boolean _myTurn)

@@ -21,7 +21,7 @@ public class StatPanel extends JPanel implements BattleConstants
     private int hrs;
 
     private int matchID;
-    private int turn;
+    private String turn;
 
     private Ship selectedShip;
     
@@ -46,8 +46,6 @@ public class StatPanel extends JPanel implements BattleConstants
         taStats.setFont(FONT_STAT);
         taStats.setEditable(false);
         
-        this.update();
-
         this.add(taStats);
         this.add(lblTimer);
 
@@ -105,14 +103,14 @@ public class StatPanel extends JPanel implements BattleConstants
     }
 
     /**
-     * Increments the turn count
+     * Sets the turn count
+     * @param _turn the turn count
      */
-    public void incTurn()
+    public void setTurn(String _turn)
     {
-        turn++;
-        this.update();
+        turn = _turn;
     }
-
+    
     /**
      * Sets the currently selected ship
      * @param s the Ship
@@ -120,8 +118,6 @@ public class StatPanel extends JPanel implements BattleConstants
     public void setShip(Ship s)
     {
         selectedShip = s;
-
-        
     }
 
     /**
