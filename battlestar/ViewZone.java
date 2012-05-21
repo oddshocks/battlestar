@@ -34,14 +34,6 @@
          this.setBorder(compound);
       
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        
-        this.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
-                panelStat.update();
-            }
-        });
 
          ship = null;
       }
