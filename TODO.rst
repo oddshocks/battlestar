@@ -36,6 +36,7 @@ Needed
 
 Wanted
 ------
+* [ ] Replace sun.audio.* with non-proprietary audio packages
 * [X] Get royalty-free sounds
 * [ ] Get royalty-free background music
 * [ ] Get more graphics!

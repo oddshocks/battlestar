@@ -7,6 +7,7 @@
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.*;
 import javax.swing.*;
 
 public interface BattleConstants
@@ -30,6 +31,10 @@ public interface BattleConstants
 
     final Font FONT_MAIN = new Font("Verdana", Font.BOLD, 12);
     final Font FONT_STAT = new Font("Verdana", Font.BOLD, 16);
+
+    /// SOUNDS ///
+
+    final String SOUND_WELCOME = "sound/welcome.wav";
 
     /// RACES ///
     

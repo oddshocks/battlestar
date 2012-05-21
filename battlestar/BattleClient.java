@@ -11,6 +11,7 @@
    import java.net.*;
    import java.util.*;
    import javax.swing.*;
+   import sun.audio.*;
 
    public class BattleClient extends JFrame implements BattleConstants
    {
@@ -20,6 +21,7 @@
       ChatPanel panelChat;
       JButton btnMove, btnAttack;
    	
+     
    
       String handle; // client identifier
    
@@ -304,8 +306,39 @@
             }
       
         /// END SERVER CONNECTION CODE ///
+
+            playSound(SOUND_WELCOME);
       }
    
+    /**
+     * Play a sound
+     * @param sc the constant variable representing the path to the sound file
+     */
+    public void playSound(String sc)
+    {
+        try
+        {
+            InputStream in = null;
+
+            if (sc == SOUND_WELCOME)
+            {
+                in = new FileInputStream(SOUND_WELCOME);
+            }
+            AudioStream as = new AudioStream(in);
+            AudioPlayer.player.start(as);
+        }
+        catch (IOException ioex)
+        {
+            System.out.println("Fatal error: could not play sound");
+            ioex.printStackTrace();
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Fatal error when attempting to play sound");
+            ex.printStackTrace();
+        }
+    }
+    
     /**
      * StatPanel accessor
      * @return the StatPanel
