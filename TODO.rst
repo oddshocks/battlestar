@@ -13,7 +13,7 @@ Urgent
 * [X] Finalize game rules (remember, we need to be done in a few weeks)
 * [X] Add to design document
 * [X] Make sure we know what we're doing with the MPP file
-* [ ] Get game functional
+* [X] Get game functional
 
 Important
 ---------
