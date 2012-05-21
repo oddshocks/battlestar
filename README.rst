@@ -13,8 +13,8 @@ Victory is achieved by destroying your opponent's main ship (the Cylons must
 destroy the Humans' Galactica, and the Humans must destroy the Cylons'
 Basestar).
 
-Ships
------
+Ship Stats
+----------
 
 - Hits: number of hits the ship can take before it is destroyed
 - Move: number of zones the ship can move in a single action
@@ -32,6 +32,30 @@ Galactica
     - Move: 1
     - Range: 3
     - Power: 2
+
+Heavy Raider
+    - Hits: 3
+    - Move: 1
+    - Range: 2
+    - Power: 1
+
+Raider
+    - Hits: 1
+    - Move: 2
+    - Range: 2
+    - Power: 1
+
+Raptor
+    - Hits: 3
+    - Move: 2
+    - Range: 2
+    - Power: 1
+
+Viper
+    - Hits: 1
+    - Move: 2
+    - Range: 2
+    - Power: 1
 
 Development
 -----------
