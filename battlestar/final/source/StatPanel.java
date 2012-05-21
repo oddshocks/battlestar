@@ -52,8 +52,11 @@
             selectedShip = aZone.ship();
             taStats.setText(
                "\nSELECTED SHIP STATS\n"
-               + "\n" + " Type - " + selectedShip.type()
-               + "\n" + " Hits - " + selectedShip.hits());
+               + "\nType - " + selectedShip.type()
+               + "\nHits - " + selectedShip.hits()
+               + "\nMove - " + selectedShip.getMoveRange()
+               + "\nRange - " + selectedShip.getAttackRange()
+               + "\nPower - " + selectedShip.getWeaponDamage());
          }
       }
    }

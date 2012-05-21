@@ -46,7 +46,7 @@
    
     /**
      * Set the ship in the location
-     * @param ship the ship
+     * @param _ship the ship
      */
       public void setShip(Ship _ship)
       {

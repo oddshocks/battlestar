@@ -1,3 +1,5 @@
 javac source/*.java
-java -jar Client.jar localhost
+jar -cmf clientmanifest.txt BattleClient.jar source/*.class source/images/*.*
+jar -tvf BattleClient.jar
+java -jar BattleClient.jar
 pause
