@@ -1,8 +1,11 @@
-/**
- * BattleConstants
- * Holds constants used in Battlestar
- * Author: David Gay
- * Spring 2012
+ /**
+ * The class holds the constants used in
+ * multiple other classes in BattleStar game project
+ * @author David Gay
+ * @author Scott Gunther
+ * @author Nate Osborn
+ * @author Yigit Katkici
+ * @version 1.4 Build May 19 2012
  */
 
 import java.awt.Color;
@@ -21,15 +24,15 @@ public interface BattleConstants
 
     /// STYLE ///
     
-    final Color FONT_COLOR = new Color(238, 229, 222);
-    final Color BACKGROUND_COLOR = new Color(139, 134, 130);
-    final Color BACKGROUND_HUMAN = new Color(105, 105, 105);
-    final Color FOREGROUND_HUMAN = new Color(173, 216, 230);
-    final Color BACKGROUND_CYLON = new Color(176, 196, 122);
-    final Color FOREGROUND_CYLON = new Color(128, 128, 128);
+      final Color FONT_COLOR = new Color(238, 229, 222); // Select font color
+      final Color BACKGROUND_COLOR = new Color(139, 134, 130); // Set default background color
+      final Color BACKGROUND_HUMAN = new Color(105, 105, 105); // Set background color for human
+      final Color FOREGROUND_HUMAN = new Color(173, 216, 230); // Set foreground color for human
+      final Color BACKGROUND_CYLON = new Color(176, 196, 122); // Set background color for cylon
+      final Color FOREGROUND_CYLON = new Color(128, 128, 128); // Set foreground color for cylon
 
-    final Font FONT_MAIN = new Font("Verdana", Font.BOLD, 12);
-    final Font FONT_STAT = new Font("Verdana", Font.BOLD, 16);
+      final Font FONT_MAIN = new Font("Verdana", Font.BOLD, 12); // Select main font
+      final Font FONT_STAT = new Font("Verdana", Font.BOLD, 16); // Select stats font
 
     /// SOUNDS ///
 
@@ -37,7 +40,7 @@ public interface BattleConstants
 
     /// RACES ///
     
-    public static final String[] RACES = {"Human", "Cylon"};
+      public static final String[] RACES = {"Human", "Cylon"}; // Set an array for races
     
     /// SHIPS ///
 
@@ -87,8 +90,8 @@ public interface BattleConstants
 
     /// ICONS ///
 
-    final ImageIcon ICON_TURN = new ImageIcon("images/turnicon.png");
-    final ImageIcon ICON_AID = new ImageIcon("images/aidicon.gif");
-    final ImageIcon ICON_ID = new ImageIcon("images/idicon.jpeg");
-    final ImageIcon ICON_TYPE = new ImageIcon("images/typeicon.png");
+      final ImageIcon ICON_TURN = new ImageIcon("images/turnicon.png"); // Set icon for turn
+      final ImageIcon ICON_AID = new ImageIcon("images/aidicon.gif"); // Set icon for aid
+      final ImageIcon ICON_ID = new ImageIcon("images/idicon.jpg"); // Set icon for id
+      final ImageIcon ICON_TYPE = new ImageIcon("images/typeicon.png"); // Set icon for type
 }

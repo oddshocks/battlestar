@@ -1,8 +1,12 @@
 /**
- * Battlestar Client
- * For RIT's 4002-219 course
- * Spring 2012
- * @author David Gay, Scott Gunther, Yigit K, Nathan Osborn (sorry, Yigit!)
+ * The class starts the client side of the game, establishing the connection 
+ * to the Server based on the port variables stated in the constants class. 
+ * The class takes in IP variable for connection through arguements.
+ * The project is prepared for RIT's 4002-219 course
+ * @author David Gay
+ * @author Scott Gunther
+ * @author Nate Osborn
+ * @author Yigit Katkici
  */
 
    import java.awt.*;
@@ -15,11 +19,11 @@
 
    public class BattleClient extends JFrame implements BattleConstants
    {
-        ViewPanel panelView;
-      StatPanel panelStat;
-      ControlPanel panelControl;
-      ChatPanel panelChat;
-      JButton btnMove, btnAttack;
+        // instantiate panel objects for the GUI
+      ViewPanel panelView; // instantiate ViewPanel
+      StatPanel panelStat; // instantiate StatPanel
+      ControlPanel panelControl; // instantiate ControlPanel
+      ChatPanel panelChat; // // instantiate ChatPanel
    
         /** A frame that contains the wait message **/
         private JFrame jfWait;
@@ -33,9 +37,13 @@
      
       String handle; // client identifier
    
+      	// instantiate statusbar as final
       final StatusBar statusBar;
+		
+		// instantiate JTextField for input
       final JTextField tfInput;
    	
+   		// instantiate printwriter and buffered reader
       PrintWriter pw = null;
       BufferedReader br = null;
   
@@ -43,9 +51,12 @@
         // There are two races
         // What
         // And what the hell happened with indentation?
-      private boolean human; //Is this client a human?
-      private boolean cylon; //Is this client a cylon? 
-      private boolean myTurn; //Is it my turn?
+		// boolean for race selection
+      private boolean human; 
+		// is this client a cylon?
+      private boolean cylon; 
+		// Boolean for turn is it my turn?
+      private boolean myTurn; 
    
       boolean reading; // are we reading from the server?
    
@@ -71,6 +82,7 @@
          menuGame.setMnemonic('G');
          JMenuItem miExit = new JMenuItem("Exit");
          miExit.setMnemonic('E');
+         // add ActionListener to the exit button
          miExit.addActionListener(
                new ActionListener()
                {
@@ -84,6 +96,7 @@
          menuHelp.setMnemonic('H');
          JMenuItem miAbout = new JMenuItem("About");
          miAbout.setMnemonic('A');
+         // add ActionListener to the about button
          miAbout.addActionListener(
                new ActionListener()
                {

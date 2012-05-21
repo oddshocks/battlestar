@@ -14,18 +14,18 @@ import javax.swing.*;
 
 public class StatPanel extends JPanel implements BattleConstants
 {
-    private javax.swing.Timer timer; // For game time
-    private JLabel lblTimer;
-    private int secs;
-    private int mins;
-    private int hrs;
-
-    private int matchID;
-    private String turn;
-
-    private Ship selectedShip;
+      private javax.swing.Timer timer; // For game time
+      private JLabel lblTimer; // Label for the timer
+      private int secs; // integer for seconds
+      private int mins; // integer for minutes
+      private int hrs; // integer for hours
+		
+      private int matchID; // integer to keep track of games played
+      private int turn; // integer to keep track of turns
+   
+      private Ship selectedShip; // instantiate a ship instance as selected ship
     
-    private JTextArea taStats; // text area where stats are displayed
+      private JTextArea taStats; // text area where stats are displayed
 
     /**
      * StatPanel constructor

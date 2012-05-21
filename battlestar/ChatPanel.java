@@ -11,11 +11,11 @@ import javax.swing.*;
 
 public class ChatPanel extends JPanel implements BattleConstants
 {
-    JTextArea ta;
-    JScrollPane sp;
+    JTextArea ta; // instantiate a text area chat display
+    JScrollPane sp; // instantiate a scroll pane for the text area 
 
     /**
-     * ChatPanel constructor
+     * ChatPanel default constructor
      */
     public ChatPanel()
     {
@@ -31,11 +31,6 @@ public class ChatPanel extends JPanel implements BattleConstants
         sp = new JScrollPane(ta);
         this.add(sp);  
     }
-
-    // Yigit also added a parameterized constructor to accept a race,
-    // probably so the panel's color could change based on race.
-    // We should probably do that a different way (if at all), since it doesn't
-    // really make sense that the ChatPanel has a String race varaible.
 
     /**
      * Appends a message to the text field

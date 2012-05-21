@@ -13,15 +13,16 @@ import javax.swing.*;
    public class ViewPanel extends JPanel implements BattleConstants
    {
       Vector<ViewZone> zones; // zones ViewObjects can be in
-      ViewZone selectedZone = null;
-      ViewZone actionZone = null;
-	    BattleClient client = null;
+      ViewZone selectedZone = null; // instantiate a null ViewZone instance
+      ViewZone actionZone = null; // instantiate a null ViewZone instance
+      BattleClient client = null; // instantiate a null battleClient instance
     
       private boolean moving; //Is the player attacking?
       private boolean attacking; //Is the player moving
     
     /**
-     * ViewPanel constructor
+     * ViewPanel parameterized constructor
+	  * @param _client BattleClient object
      */
       public ViewPanel(BattleClient _client)
     {
@@ -32,6 +33,7 @@ import javax.swing.*;
       
          zones = new Vector<ViewZone>();
         
+         // Add actionlistener for buttons 
          ActionListener buttonListener = 
             new ActionListener()
             {
@@ -71,6 +73,8 @@ import javax.swing.*;
    
     /**
      * Set ship in ViewZone
+	  * @param position of the ship
+	  * @param ship the ship object ship object
      */
       public void setShip(int position, Ship ship)
       {

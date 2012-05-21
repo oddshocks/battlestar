@@ -21,9 +21,9 @@ public class ShipBasestar extends Ship implements BattleConstants
         this.setType(C_BASESTAR);
         this.setHits(5);
         this.setPosition(p);
-		  this.setMoveRange(1);
-		  this.setAttackRange(3);
-		  this.setWeaponDamage(2);
+		this.setMoveRange(1);
+		this.setAttackRange(3);
+		this.setWeaponDamage(2);
 
         this.setIcon(new ImageIcon("images/basestar.png"));
     }

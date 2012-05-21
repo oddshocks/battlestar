@@ -13,9 +13,9 @@
       private String type; // type of ship (a constant)
       private int hits; // number of hits the ship can take
       private int position; // the position of the ship
-      private int moveRange;
-      private int attackRange;
-      private int weaponDamage;
+      private int moveRange; //the move range integer assigned specialy for each ship
+      private int attackRange; //the attack range integer assigned specialy for each ship
+      private int weaponDamage; //the weapon damage integer assigned specialy for each ship
       private ImageIcon icon; // the ship's icon
     
     /**
