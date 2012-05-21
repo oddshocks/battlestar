@@ -24,6 +24,8 @@
       StatPanel panelStat; // instantiate StatPanel
       ControlPanel panelControl; // instantiate ControlPanel
       ChatPanel panelChat; // // instantiate ChatPanel
+      JButton btnMove; // move command button
+      JButton btnAttack; // attack command button
    
         /** A frame that contains the wait message **/
         private JFrame jfWait;

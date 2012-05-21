@@ -21,7 +21,7 @@ public class StatPanel extends JPanel implements BattleConstants
       private int hrs; // integer for hours
 		
       private int matchID; // integer to keep track of games played
-      private int turn; // integer to keep track of turns
+      private String turn; // String to keep track of turns
    
       private Ship selectedShip; // instantiate a ship instance as selected ship
     
