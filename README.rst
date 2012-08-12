@@ -2,6 +2,12 @@ BATTLESTAR
 ==========
 A multiplayer game based on Battlestar lore.
 
+The code is a little broken due to the chaotic nature of my rather unfortunate
+group project experience. The master branch contains the latest stuff I
+committed during development, and the submission branch contains (I believe)
+the very last iteration of the code we submitted for grading. I had to remove
+some broken features from that branch before my professor graded it.
+
 Authors: David Gay, Scott Gunther, Yigit Katkici, Nathan Osborn
 
 Gameplay
@@ -68,8 +74,9 @@ their own work (to a seperate branch, please), even better. :)
 License
 -------
 
-Battlestar is released under the GNU GPL in the name of education and freedom.
-All Battlestar trademarked names and phrases are property of their owners.
+Battlestar is released under a CC Attribution 3.0 Unported License in the name
+of education and freedom. All Battlestar trademarked names and phrases are
+property of their owners.
 
 Attribution
 -----------
